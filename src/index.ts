@@ -1,34 +1,36 @@
 import * as express from "express";
-import { Request, Response } from "express";
+import * as dotenv from "dotenv";
+import * as logger from "morgan";
 import mongoose = require("mongoose");
 const cors = require("cors");
 import { Mongoose } from "mongoose";
+import { router } from "./routes/login";
 
-const { PORT = 9000, MONGODB_URL = "mongodb://localhost:27017/MyDb" } =
-  process.env;
+dotenv.config();
+const PORT = process.env.PORT;
+const MONGODB_URI = process.env.MONGODB_URI;
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.get("/", (req: Request, res: Response) => {
-  res.send({
-    message: "hello world",
-  });
-});
+app.use(logger("combined"));
+app.use("/", router);
 
-connect().then(listen);
+connect();
 
 function listen(): void {
   app.listen(PORT);
-  console.log("Server started at http://localhost: " + PORT);
+  console.log("Server started at http://localhost:" + PORT);
 }
 
 async function connect(): Promise<Mongoose> {
+  mongoose.set("strictQuery", true);
   mongoose.connection
     .on("error", console.log)
     .on("disconnected", connect)
     .once("open", listen);
   try {
-    return await mongoose.connect(MONGODB_URL, {});
+    console.log(MONGODB_URI, PORT);
+    return await mongoose.connect(MONGODB_URI, {});
   } catch (err) {
     throw err;
   }
