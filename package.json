@@ -39,6 +39,8 @@
     "mongodb": "^4.13.0",
     "mongoose": "^6.9.0",
     "morgan": "^1.10.0",
+    "multer-gridfs-storage": "^5.0.2",
+    "sharp": "^0.31.3",
     "typescript": "^4.9.4",
     "typescript-eslint": "^0.0.1-alpha.0",
     "webpack-node-externals": "^3.0.0"

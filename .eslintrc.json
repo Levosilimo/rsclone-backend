@@ -18,6 +18,7 @@
         "no-console": 0,
         "@typescript-eslint/no-explicit-any": 2,
         "prettier/prettier": "error",
-        "@typescript-eslint/no-var-requires" : "warn"
+        "@typescript-eslint/no-var-requires": "warn",
+        "@typescript-eslint/ban-ts-comment": "warn"
     }
 }

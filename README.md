@@ -1,6 +1,6 @@
 **Register User**
 ----
-Registers new user
+Creates new user with given credentials
 
 <details>
 
@@ -24,15 +24,15 @@ Registers new user
 
   None
 
-  * **Data Params**
+* **Data Params**
 
-      ```typescript
-        {
-          email: string;
-          username: string;
-          password: string;
-        }
-      ```
+    ```typescript
+      {
+        email: string;
+        username: string;
+        password: string;
+      }
+    ```
 
 * **Success Response:**
 
@@ -40,11 +40,6 @@ Registers new user
       **Content:**
       ```json
         {
-           "username": "Lev Sylin",
-           "email": "silin.lev@gmail.com",
-           "password": "$2a$10$Wlow2WzWpEERDRJVUOy5buIayKBpFd3UC.kEOcnI.nGV.KpBc1E6G",
-           "_id": "63d3e07b4202e5f5be332de5",
-           "__v": 0,
            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjNkM2UwN2I0MjAyZTVmNWJlMzMyZGU1IiwicGFzc3dvcmQiOiJyc2Nsb25lIiwiaWF0IjoxNjc0ODI5OTQ3LCJleHAiOjE2NzQ4NTE1NDd9.WGbXvAV02oPqZx6awbR53Lw3TSksZBWH6Ja-tT2hO58"
          }
       ```
@@ -78,7 +73,7 @@ Registers new user
 
 **Login User**
 ----
-Logs user in
+Validates credentials. Returns a token on success
 
 <details>
 
@@ -117,11 +112,6 @@ Logs user in
       **Content:**
       ```json
         {
-           "username": "Lev Sylin",
-           "email": "silin.lev@gmail.com",
-           "password": "$2a$10$Wlow2WzWpEERDRJVUOy5buIayKBpFd3UC.kEOcnI.nGV.KpBc1E6G",
-           "_id": "63d3e07b4202e5f5be332de5",
-           "__v": 0,
            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjNkM2UwN2I0MjAyZTVmNWJlMzMyZGU1IiwicGFzc3dvcmQiOiJyc2Nsb25lIiwiaWF0IjoxNjc0ODI5OTQ3LCJleHAiOjE2NzQ4NTE1NDd9.WGbXvAV02oPqZx6awbR53Lw3TSksZBWH6Ja-tT2hO58"
          }
       ```
@@ -131,17 +121,78 @@ Logs user in
     * **Code:** 400 BAD REQUEST <br />
       **Content:**
 
-      Invalid input: "password" and "username"/"email" are required
+      Invalid input: "password" and "login" are required
 
   OR
 
     * **Code:** 404 NOT FOUND <br />
       **Content:**
 
-      User with this "password" and "username"/"email" was not found
+      User with this "password" and "login" was not found
 
 * **Notes:**
 
   None
+
+</details>
+
+**Update Avatar**
+----
+Changes the user's avatar to the sent one if the given token is valid
+
+<details>
+
+* **URL**
+
+  /avatar/upload
+
+* **Method:**
+
+  `PATCH`
+
+* **Headers:**
+
+  `'Content-Type': 'multipart/form-data'`
+
+* **URL Params**
+
+  None
+
+* **Query Params**
+
+  None
+
+* **Data Params**
+
+    ```typescript
+      {
+        file: Binary
+        token: string
+      }
+    ```
+
+* **Success Response:**
+
+    * **Code:** 200 OK <br />
+      **Content:**
+        None
+
+* **Error Response:**
+
+    * **Code:** 403 FORBIDDEN <br />
+      **Content:**
+
+      A token is required for authentication
+
+  OR
+
+    * **Code:** 401 UNAUTHORIZED <br />
+      **Content:**
+
+      Invalid Token
+
+* **Notes:**
+
+  Request must be sent using the [multipart/form-data](https://developer.mozilla.org/en-US/docs/Web/API/FormData) content-type. See test-pages/uploadImage.html
 
 </details>
