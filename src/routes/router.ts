@@ -5,7 +5,8 @@ import {
 } from "../controllers/authController";
 import * as express from "express";
 import { upload } from "../model/db";
-import { getAvatar } from "../controllers/avatarController";
+import { getAvatar, updateAvatar } from "../controllers/avatarController";
+import { getUserData, updateUserData } from "../controllers/userDataController";
 
 export const router = express.Router();
 router.post("/login", loginUser);
@@ -16,6 +17,9 @@ router.patch(
   verifyToken,
   upload.single("file"),
   // Body gets empty after multer processing, so we need to get the id from the token again
-  verifyToken
+  verifyToken,
+  updateAvatar
 );
 router.get("/avatar/:username", getAvatar);
+router.patch("/user", verifyToken, updateUserData, getUserData);
+router.get("/user", verifyToken, getUserData);

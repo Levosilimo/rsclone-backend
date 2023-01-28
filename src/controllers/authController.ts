@@ -1,9 +1,9 @@
 import * as express from "express";
 import * as bcrypt from "bcryptjs";
 import * as jwt from "jsonwebtoken";
-import UserAuthSchema, {UserAuth} from "../model/userAuthSchema";
+import UserAuthSchema, { UserAuth } from "../model/userAuthSchema";
 import UserDataSchema from "../model/userDataSchema";
-import {HydratedDocument} from "mongoose";
+import { HydratedDocument } from "mongoose";
 
 interface RegistrationCredentialsRequestBody {
   email: string;
@@ -31,10 +31,10 @@ export async function loginUser(
     const user: HydratedDocument<UserAuth> =
       (await UserAuthSchema.findOne({ email: login })) ||
       (await UserAuthSchema.findOne({ username: login }));
-    const dbPassword: string = user.password;
-    if (user && (await bcrypt.compare(password, user.password))) {
+    const encryptedPassword: string = user.password;
+    if (user && (await bcrypt.compare(password, encryptedPassword))) {
       user.token = jwt.sign(
-        { user_id: user._id, dbPassword },
+        { user_id: user._id, encryptedPassword },
         process.env.TOKEN_KEY,
         {
           expiresIn: process.env.TOKEN_LIFETIME,
