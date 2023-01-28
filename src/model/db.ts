@@ -11,7 +11,7 @@ dotenv.config();
 export async function connect(): Promise<Mongoose> {
   mongoose.set("strictQuery", true);
   mongoose.connection
-    .on("error", console.log)
+    .on("error", console.error)
     .on("disconnected", connect)
     .on("connected", initGridFSBucket)
     .once("open", listen);
@@ -40,7 +40,7 @@ const storage = new GridFsStorage({
         bucketName: "filesBucket",
       };
       resolve(fileInfo);
-    }).catch((err) => console.log(err));
+    }).catch((err) => console.error(err));
   },
 });
 

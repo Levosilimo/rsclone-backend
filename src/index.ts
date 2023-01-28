@@ -11,6 +11,7 @@ export const MONGODB_URI = process.env.MONGODB_URI;
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 logger.token("body", (req) => JSON.stringify(req.body));
 app.use(
   logger(

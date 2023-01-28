@@ -97,14 +97,14 @@ Validates credentials. Returns a token on success
 
   None
 
-    * **Data Params**
+* **Data Params**
 
-        ```typescript
-          {
-            login: string;
-            password: string;
-          }
-        ```
+    ```typescript
+      {
+        login: string;
+        password: string;
+      }
+    ```
 
 * **Success Response:**
 
@@ -154,6 +154,8 @@ Changes the user's avatar to the sent one if the given token is valid
 
   `'Content-Type': 'multipart/form-data'`
 
+  `'x-access-token': ${token}`
+
 * **URL Params**
 
   None
@@ -167,7 +169,6 @@ Changes the user's avatar to the sent one if the given token is valid
     ```typescript
       {
         file: Binary
-        token: string
       }
     ```
 

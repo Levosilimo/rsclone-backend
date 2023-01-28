@@ -1,8 +1,9 @@
 import * as express from "express";
 import * as bcrypt from "bcryptjs";
 import * as jwt from "jsonwebtoken";
-import UserAuthSchema from "../model/userAuthSchema";
+import UserAuthSchema, {UserAuth} from "../model/userAuthSchema";
 import UserDataSchema from "../model/userDataSchema";
+import {HydratedDocument} from "mongoose";
 
 interface RegistrationCredentialsRequestBody {
   email: string;
@@ -27,12 +28,13 @@ export async function loginUser(
         .send('Invalid input: "password" and "login" are required');
       return;
     }
-    const user =
+    const user: HydratedDocument<UserAuth> =
       (await UserAuthSchema.findOne({ email: login })) ||
       (await UserAuthSchema.findOne({ username: login }));
+    const dbPassword: string = user.password;
     if (user && (await bcrypt.compare(password, user.password))) {
       user.token = jwt.sign(
-        { user_id: user._id, password },
+        { user_id: user._id, dbPassword },
         process.env.TOKEN_KEY,
         {
           expiresIn: process.env.TOKEN_LIFETIME,
@@ -46,7 +48,7 @@ export async function loginUser(
       return;
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).send("Server error");
   }
 }
@@ -89,7 +91,7 @@ export async function registerUser(
     );
     res.status(201).json(user.token);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).send("Server error");
   }
 }
@@ -98,7 +100,7 @@ export function verifyToken(
   req: express.Request,
   res: express.Response,
   next: express.NextFunction
-) {
+): express.Response | void {
   const token =
     req.body.token || req.query.token || req.headers["x-access-token"];
   if (!token) {
@@ -106,7 +108,7 @@ export function verifyToken(
   }
   try {
     req.body.userData = jwt.verify(token, process.env.TOKEN_KEY);
-  } catch (err) {
+  } catch {
     return res.status(401).send("Invalid Token");
   }
   return next();

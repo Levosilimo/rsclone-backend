@@ -5,14 +5,17 @@ import {
 } from "../controllers/authController";
 import * as express from "express";
 import { upload } from "../model/db";
-import { updateAvatar } from "../controllers/avatarController";
+import { getAvatar } from "../controllers/avatarController";
 
 export const router = express.Router();
 router.post("/login", loginUser);
 router.post("/register", registerUser);
 router.patch(
   "/avatar/upload",
-  upload.single("file"),
+  // We need this check to stop unauthenticated users from uploading images to the server
   verifyToken,
-  updateAvatar
+  upload.single("file"),
+  // Body gets empty after multer processing, so we need to get the id from the token again
+  verifyToken
 );
+router.get("/avatar/:username", getAvatar);
