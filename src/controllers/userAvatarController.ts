@@ -9,15 +9,26 @@ export async function updateAvatar(
   res: express.Response
 ): Promise<express.Response | void> {
   try {
-    const userId = req.body.userData.user_id;
     // Field "id" is not typed in Multer.File
     // @ts-ignore
     const { id } = req.file;
-    await UserDataSchema.findOneAndUpdate(
-      { _id: userId },
-      { avatarId: id },
-      { new: true }
-    );
+    if (req.body.username) {
+      if (!req.body.userData.isAdmin)
+        return res.status(401).send("You don't have rights to do that");
+      const username = String(req.body.username);
+      await UserDataSchema.findOneAndUpdate(
+        { username },
+        { avatarId: id },
+        { new: true }
+      );
+    } else {
+      const userId = req.body.userData.user_id;
+      await UserDataSchema.findOneAndUpdate(
+        { _id: userId },
+        { avatarId: id },
+        { new: true }
+      );
+    }
     res.status(200).end();
   } catch (err) {
     console.error(err);
@@ -36,7 +47,8 @@ export async function getAvatar(
     const user: HydratedDocument<UserData> = await UserDataSchema.findOne({
       username: username,
     });
-    if (!user) return res.status(404).send("User with sent username not found");
+    if (!user)
+      return res.status(404).send('User with this "username" not found');
     const files: GridFSFile[] = await bucket
       .find({ _id: user.avatarId })
       .toArray();

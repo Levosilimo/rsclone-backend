@@ -4,14 +4,14 @@ export interface UserAuth {
   username: string;
   email: string;
   password: string;
-  token: string;
+  isAdmin: boolean;
 }
 
 const UserAuthSchema = new Schema<UserAuth>({
   username: { type: String, unique: true, required: true },
   email: { type: String, unique: true, required: true },
   password: { type: String, required: true },
-  token: { type: String },
+  isAdmin: { type: Boolean, required: true },
 });
 
 const model = mongoose.model<UserAuth>("User", UserAuthSchema);

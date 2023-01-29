@@ -15,7 +15,7 @@ const UserDataSchema = new Schema<UserData>({
   avatarId: {
     type: ObjectId,
     required: true,
-    default: "63d43be3c0ddc6e20bda87df",
+    default: "63d663c156bef39ec55d01ae",
   },
 });
 

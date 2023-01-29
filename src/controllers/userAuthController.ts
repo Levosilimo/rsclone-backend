@@ -9,38 +9,45 @@ interface RegistrationCredentialsRequestBody {
   email: string;
   username: string;
   password: string;
+  adminPassword?: string;
 }
 
 interface LoginCredentialsRequestBody {
   login: string;
   password: string;
+  adminPassword?: string;
 }
 
 export async function loginUser(
   req: express.Request,
   res: express.Response
-): Promise<void> {
+): Promise<express.Response | void> {
   try {
-    const { login, password }: LoginCredentialsRequestBody = req.body;
+    const { login, password, adminPassword }: LoginCredentialsRequestBody =
+      req.body;
+    let isAdmin = false;
     if (!(login && password)) {
-      res
+      return res
         .status(400)
         .send('Invalid input: "password" and "login" are required');
-      return;
+    } else if (adminPassword) {
+      if (adminPassword !== process.env.ADMIN_PASSWORD)
+        return res.status(401).send("Incorrect admin password");
+      isAdmin = true;
     }
     const user: HydratedDocument<UserAuth> =
       (await UserAuthSchema.findOne({ email: login })) ||
       (await UserAuthSchema.findOne({ username: login }));
     const encryptedPassword: string = user.password;
     if (user && (await bcrypt.compare(password, encryptedPassword))) {
-      user.token = jwt.sign(
-        { user_id: user._id, encryptedPassword },
+      const token = jwt.sign(
+        { user_id: user._id, isAdmin },
         process.env.TOKEN_KEY,
         {
           expiresIn: process.env.TOKEN_LIFETIME,
         }
       );
-      res.status(200).json(user.token);
+      res.status(200).json(token);
     } else {
       res
         .status(404)
@@ -56,40 +63,49 @@ export async function loginUser(
 export async function registerUser(
   req: express.Request,
   res: express.Response
-): Promise<void> {
+): Promise<express.Response | void> {
   try {
-    const { email, password, username }: RegistrationCredentialsRequestBody =
-      req.body;
+    const {
+      email,
+      password,
+      username,
+      adminPassword,
+    }: RegistrationCredentialsRequestBody = req.body;
+    let isAdmin = false;
     if (!(email && password && username)) {
-      res
+      return res
         .status(400)
         .send('Invalid input: "email", "password" and "username" are required');
-      return;
-    } else if (await UserAuthSchema.findOne({ email: email })) {
-      res.status(409).send("A user with this email address already exists");
-      return;
-    } else if (await UserAuthSchema.findOne({ username: username })) {
-      res.status(422).send("Username is already taken");
-      return;
+    } else if (await UserAuthSchema.findOne({ email })) {
+      return res
+        .status(409)
+        .send("A user with this email address already exists");
+    } else if (await UserAuthSchema.findOne({ username })) {
+      return res.status(422).send("Username is already taken");
+    } else if (adminPassword) {
+      if (adminPassword !== process.env.ADMIN_PASSWORD)
+        return res.status(401).send("Invalid admin password");
+      isAdmin = true;
     }
-    const encryptedPassword = await bcrypt.hash(password, 10);
-    const user = await UserAuthSchema.create({
+    const encryptedPassword: string = await bcrypt.hash(password, 10);
+    const user: HydratedDocument<UserAuth> = await UserAuthSchema.create({
       email: email.toLowerCase(),
       username: username,
       password: encryptedPassword,
+      isAdmin,
     });
-    UserDataSchema.create({
+    await UserDataSchema.create({
       username: username,
       _id: user._id,
     });
-    user.token = jwt.sign(
-      { user_id: user._id, encryptedPassword },
+    const token = jwt.sign(
+      { user_id: user._id, isAdmin },
       process.env.TOKEN_KEY,
       {
         expiresIn: process.env.TOKEN_LIFETIME,
       }
     );
-    res.status(201).json(user.token);
+    res.status(201).json(token);
   } catch (error) {
     console.error(error);
     res.status(500).send("Server error");

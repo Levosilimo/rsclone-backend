@@ -2,10 +2,10 @@ import {
   loginUser,
   registerUser,
   verifyToken,
-} from "../controllers/authController";
+} from "../controllers/userAuthController";
 import * as express from "express";
 import { upload } from "../model/db";
-import { getAvatar, updateAvatar } from "../controllers/avatarController";
+import { getAvatar, updateAvatar } from "../controllers/userAvatarController";
 import { getUserData, updateUserData } from "../controllers/userDataController";
 
 export const router = express.Router();

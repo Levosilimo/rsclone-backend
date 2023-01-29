@@ -31,6 +31,7 @@ Creates new user with given credentials
         email: string;
         username: string;
         password: string;
+        adminPassword?: string;
       }
     ```
 
@@ -64,6 +65,13 @@ Creates new user with given credentials
       **Content:**
 
       Username is already taken
+
+  OR
+
+    * **Code:** 401 UNAUTHORIZED <br />
+      **Content:**
+
+      Invalid admin password
 
 * **Notes:**
 
@@ -103,6 +111,7 @@ Validates credentials. Returns a token on success
       {
         login: string;
         password: string;
+        adminPassword?: string;
       }
     ```
 
@@ -129,6 +138,13 @@ Validates credentials. Returns a token on success
       **Content:**
 
       User with this "password" and "login" was not found
+
+  OR
+
+    * **Code:** 401 UNAUTHORIZED <br />
+      **Content:**
+
+      Invalid admin password
 
 * **Notes:**
 
@@ -168,7 +184,8 @@ Changes the user's avatar to the sent one if the given token is valid
 
     ```typescript
       {
-        file: Binary
+        file: Binary;
+        username?: string;
       }
     ```
 
@@ -192,9 +209,25 @@ Changes the user's avatar to the sent one if the given token is valid
 
       Invalid Token
 
+  OR
+
+    * **Code:** 401 UNAUTHORIZED <br />
+      **Content:**
+
+      You don't have rights to do that
+
+  OR
+
+    * **Code:** 404 NOT FOUND <br />
+      **Content:**
+
+      User with this "nickname" not found
+
 * **Notes:**
 
-  Request must be sent using the [multipart/form-data](https://developer.mozilla.org/en-US/docs/Web/API/FormData) content-type. See test-pages/uploadImage.html
+   * Request must be sent using the [multipart/form-data](https://developer.mozilla.org/en-US/docs/Web/API/FormData) content-type. See test-pages/uploadImage.html
+
+   * Only admin users can use "nickname" in Data Params to update other user's avatar
 
 </details>
 
@@ -250,7 +283,7 @@ Responses with user's avatar
     * **Code:** 404 NOT FOUND <br />
       **Content:**
 
-      User with sent "username" not found
+      User with this "username" not found
 
 * **Notes:**
 
@@ -290,8 +323,9 @@ Validates token. Replaces user data with the data from request's body. Returns o
 
     ```typescript
       {
-        language ?: string;
-        levelFlexbox ?: number;
+        username?: string;
+        language?: string;
+        levelFlexbox?: number;
       }
     ```
 
@@ -320,9 +354,16 @@ Validates token. Replaces user data with the data from request's body. Returns o
 
       Invalid Token
 
+  OR
+
+    * **Code:** 401 UNAUTHORIZED <br />
+      **Content:**
+
+      You don't have rights to do that
+
 * **Notes:**
 
-  None
+  Only admin users can use "nickname" in Data Params to update other user's data
 
 </details>
 
@@ -354,7 +395,11 @@ Validates token. Returns object of mutable user data.
 
 * **Data Params**
 
-  None
+    ```typescript
+      {
+        username?: string;
+      }
+    ```
 
 * **Success Response:**
 
@@ -371,7 +416,7 @@ Validates token. Returns object of mutable user data.
 
     * **Code:** 403 FORBIDDEN <br />
       **Content:**
-
+  
       A token is required for authentication
 
   OR
@@ -381,8 +426,15 @@ Validates token. Returns object of mutable user data.
 
       Invalid Token
 
+  OR
+
+    * **Code:** 401 UNAUTHORIZED <br />
+      **Content:**
+
+      You don't have rights to do that
+
 * **Notes:**
 
-  None
+  Only admin users can use "nickname" in Data Params to get other user's data
 
 </details>
