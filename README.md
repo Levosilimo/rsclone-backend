@@ -1,3 +1,10 @@
+- [Register User](#register-user)
+- [Login User](#login-user)
+- [Update Avatar](#update-avatar)
+- [Get Avatar](#get-avatar)
+- [Update User Data](#update-user-data)
+- [Get User Data](#get-user-data)
+
 **Register User**
 ----
 Creates new user with given credentials
@@ -160,7 +167,7 @@ Changes the user's avatar to the sent one if the given token is valid
 
 * **URL**
 
-  /avatar/upload
+  /avatar
 
 * **Method:**
 
@@ -174,7 +181,8 @@ Changes the user's avatar to the sent one if the given token is valid
 
 * **URL Params**
 
-  None
+  **Unrequired:**
+  `username=[string]`
 
 * **Query Params**
 
@@ -185,7 +193,6 @@ Changes the user's avatar to the sent one if the given token is valid
     ```typescript
       {
         file: Binary;
-        username?: string;
       }
     ```
 
@@ -227,7 +234,7 @@ Changes the user's avatar to the sent one if the given token is valid
 
    * Request must be sent using the [multipart/form-data](https://developer.mozilla.org/en-US/docs/Web/API/FormData) content-type. See test-pages/uploadImage.html
 
-   * Only admin users can use "nickname" in Data Params to update other user's avatar
+   * Only admin users can use "nickname" in url params to update other user's avatar
 
 </details>
 
@@ -313,7 +320,8 @@ Validates token. Replaces user data with the data from request's body. Returns o
 
 * **URL Params**
 
-  None
+  **Unrequired:**
+  `username=[string]`
 
 * **Query Params**
 
@@ -323,7 +331,6 @@ Validates token. Replaces user data with the data from request's body. Returns o
 
     ```typescript
       {
-        username?: string;
         language?: string;
         levelFlexbox?: number;
       }
@@ -363,7 +370,7 @@ Validates token. Replaces user data with the data from request's body. Returns o
 
 * **Notes:**
 
-  Only admin users can use "nickname" in Data Params to update other user's data
+  * Only admin users can use "nickname" in url params to update other user's data
 
 </details>
 
@@ -387,7 +394,8 @@ Validates token. Returns object of mutable user data.
 
 * **URL Params**
 
-  None
+  **Unrequired:**
+  `username=[string]`
 
 * **Query Params**
 
@@ -395,11 +403,7 @@ Validates token. Returns object of mutable user data.
 
 * **Data Params**
 
-    ```typescript
-      {
-        username?: string;
-      }
-    ```
+  None
 
 * **Success Response:**
 
@@ -435,6 +439,6 @@ Validates token. Returns object of mutable user data.
 
 * **Notes:**
 
-  Only admin users can use "nickname" in Data Params to get other user's data
+    * Only admin users can use "nickname" in url params to get other user's data
 
 </details>

@@ -5,21 +5,56 @@ import {
 } from "../controllers/userAuthController";
 import * as express from "express";
 import { upload } from "../model/db";
-import { getAvatar, updateAvatar } from "../controllers/userAvatarController";
-import { getUserData, updateUserData } from "../controllers/userDataController";
+import {
+  getAvatar,
+  updateAvatar,
+  updateAvatarByUsername,
+} from "../controllers/userAvatarController";
+import {
+  getUserData,
+  getUserDataByUsername,
+  updateUserData,
+  updateUserDataByUsername,
+} from "../controllers/userDataController";
 
 export const router = express.Router();
+
+/* Auth handlers */
 router.post("/login", loginUser);
 router.post("/register", registerUser);
+
+/* User's user avatar handlers */
 router.patch(
-  "/avatar/upload",
+  "/avatar/",
   // We need this check to stop unauthenticated users from uploading images to the server
-  verifyToken,
+  verifyToken(false),
   upload.single("file"),
   // Body gets empty after multer processing, so we need to get the id from the token again
-  verifyToken,
+  verifyToken(false),
   updateAvatar
 );
 router.get("/avatar/:username", getAvatar);
-router.patch("/user", verifyToken, updateUserData, getUserData);
-router.get("/user", verifyToken, getUserData);
+
+/* Admin's user avatar handlers */
+router.patch(
+  "/avatar/:username",
+  // We need this check to stop unauthenticated users from uploading images to the server
+  verifyToken(true),
+  upload.single("file"),
+  // Body gets empty after multer processing, so we need to get the id from the token again
+  verifyToken(true),
+  updateAvatarByUsername
+);
+
+/* User's user data handlers */
+router.patch("/user", verifyToken(false), updateUserData, getUserData);
+router.get("/user", verifyToken(false), getUserData);
+
+/* Admin's user data handlers */
+router.patch(
+  "/user/:username",
+  verifyToken(true),
+  updateUserDataByUsername,
+  getUserDataByUsername
+);
+router.get("/user/:username", verifyToken(true), getUserDataByUsername);

@@ -12,23 +12,35 @@ export async function updateAvatar(
     // Field "id" is not typed in Multer.File
     // @ts-ignore
     const { id } = req.file;
-    if (req.body.username) {
-      if (!req.body.userData.isAdmin)
-        return res.status(401).send("You don't have rights to do that");
-      const username = String(req.body.username);
+    const userId = req.body.userData.user_id;
+    await UserDataSchema.findOneAndUpdate(
+      { _id: userId },
+      { avatarId: id },
+      { new: true }
+    );
+    res.status(200).end();
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+  }
+}
+
+export async function updateAvatarByUsername(
+  req: express.Request,
+  res: express.Response
+): Promise<express.Response | void> {
+  try {
+    // Field "id" is not typed in Multer.File
+    // @ts-ignore
+    const { id } = req.file;
+    const username = req.params.username;
+    if (username) {
       await UserDataSchema.findOneAndUpdate(
         { username },
         { avatarId: id },
         { new: true }
       );
-    } else {
-      const userId = req.body.userData.user_id;
-      await UserDataSchema.findOneAndUpdate(
-        { _id: userId },
-        { avatarId: id },
-        { new: true }
-      );
-    }
+    } else return res.status(400).send('Invalid input: "username" is required');
     res.status(200).end();
   } catch (err) {
     console.error(err);
@@ -54,7 +66,7 @@ export async function getAvatar(
       .toArray();
     if (!files || files.length === 0) {
       return res.status(404).json({
-        err: "User doesn't have avatar",
+        err: "User does not have an avatar",
       });
     }
     bucket.openDownloadStream(user.avatarId).pipe(res);

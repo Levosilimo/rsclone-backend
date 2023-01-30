@@ -36,8 +36,16 @@ export async function loginUser(
       isAdmin = true;
     }
     const user: HydratedDocument<UserAuth> =
-      (await UserAuthSchema.findOne({ email: login })) ||
-      (await UserAuthSchema.findOne({ username: login }));
+      (await UserAuthSchema.findOneAndUpdate(
+        { email: login },
+        { isAdmin },
+        { new: true }
+      )) ||
+      (await UserAuthSchema.findOneAndUpdate(
+        { username: login },
+        { isAdmin },
+        { new: true }
+      ));
     const encryptedPassword: string = user.password;
     if (user && (await bcrypt.compare(password, encryptedPassword))) {
       const token = jwt.sign(
@@ -112,20 +120,33 @@ export async function registerUser(
   }
 }
 
-export function verifyToken(
-  req: express.Request,
-  res: express.Response,
-  next: express.NextFunction
-): express.Response | void {
-  const token =
-    req.body.token || req.query.token || req.headers["x-access-token"];
-  if (!token) {
-    return res.status(403).send("A token is required for authentication");
-  }
-  try {
-    req.body.userData = jwt.verify(token, process.env.TOKEN_KEY);
-  } catch {
-    return res.status(401).send("Invalid Token");
-  }
-  return next();
+interface TokenPayload {
+  user_id: string;
+  isAdmin: boolean;
+}
+
+export function verifyToken(verifyAdmin: boolean) {
+  return (
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction
+  ) => {
+    const token =
+      req.body.token || req.query.token || req.headers["x-access-token"];
+    if (!token) {
+      return res.status(403).send("A token is required for authentication");
+    }
+    try {
+      const userData: TokenPayload = jwt.verify(token, process.env.TOKEN_KEY);
+      if (userData.user_id === undefined || userData.isAdmin === undefined) {
+        return res.status(401).send("Invalid Token");
+      }
+      if (verifyAdmin && !userData.isAdmin)
+        return res.status(401).send("You don't have rights to do that");
+      req.body.userData = userData;
+    } catch {
+      return res.status(401).send("Invalid Token");
+    }
+    return next();
+  };
 }
