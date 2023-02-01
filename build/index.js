@@ -1,26 +1,26 @@
-"use strict";
-exports.__esModule = true;
-exports.listen = exports.MONGODB_URI = exports.PORT = void 0;
-var express = require("express");
-var dotenv = require("dotenv");
+import express from "express";
+import * as dotenv from "dotenv";
 dotenv.config();
-var logger = require("morgan");
-var cors = require("cors");
-var router_1 = require("./routes/router");
-var db_1 = require("./model/db");
-exports.PORT = process.env.PORT;
-exports.MONGODB_URI = process.env.MONGODB_URI;
-var app = express();
+import logger from "morgan";
+import cors from "cors";
+import { router } from "./routes/router.js";
+import { connect } from "./model/db.js";
+
+export const PORT = process.env.PORT;
+export const MONGODB_URI = process.env.MONGODB_URI;
+const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-logger.token("body", function (req) { return JSON.stringify(req.body); });
-app.use(logger(":method :url :status :response-time ms - :res[content-length] :body - :req[content-length]"));
-app.use("/", router_1.router);
-function listen() {
-    app.listen(exports.PORT);
-    console.log("Server started at http://localhost:" + exports.PORT);
+logger.token("body", (req) => JSON.stringify(req.body));
+app.use(
+    logger(
+        ":method :url :status :response-time ms - :res[content-length] :body - :req[content-length]"
+    )
+);
+app.use("/", router);
+export function listen() {
+    app.listen(PORT);
+    console.log("Server started at http://localhost:" + PORT);
 }
-exports.listen = listen;
-(0, db_1.connect)();
-//# sourceMappingURL=index.js.map
+connect();
