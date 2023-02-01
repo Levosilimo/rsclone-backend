@@ -36,18 +36,11 @@ export async function loginUser(
       isAdmin = true;
     }
     const user: HydratedDocument<UserAuth> =
-      (await UserAuthSchema.findOneAndUpdate(
-        { email: login },
-        { isAdmin },
-        { new: true }
-      )) ||
-      (await UserAuthSchema.findOneAndUpdate(
-        { username: login },
-        { isAdmin },
-        { new: true }
-      ));
+      (await UserAuthSchema.findOne({ email: login })) ||
+      (await UserAuthSchema.findOne({ username: login }));
     const encryptedPassword: string = user.password;
     if (user && (await bcrypt.compare(password, encryptedPassword))) {
+      user.update({ isAdmin });
       const token = jwt.sign(
         { user_id: user._id, isAdmin },
         process.env.TOKEN_KEY,
@@ -84,12 +77,6 @@ export async function registerUser(
       return res
         .status(400)
         .send('Invalid input: "email", "password" and "username" are required');
-    } else if (await UserAuthSchema.findOne({ email })) {
-      return res
-        .status(409)
-        .send("A user with this email address already exists");
-    } else if (await UserAuthSchema.findOne({ username })) {
-      return res.status(422).send("Username is already taken");
     } else if (adminPassword) {
       if (adminPassword !== process.env.ADMIN_PASSWORD)
         return res.status(401).send("Invalid admin password");
@@ -120,17 +107,63 @@ export async function registerUser(
   }
 }
 
+export function checkUsernameEligibility(autonomous: boolean) {
+  return async (
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction
+  ): Promise<express.Response | void> => {
+    try {
+      const username: string = req.body.username;
+      if (!username) {
+        return res.status(400).send('Invalid input: "username" is required');
+      } else if (await UserAuthSchema.findOne({ username })) {
+        return res.status(422).send("Username is already taken");
+      }
+      if (!autonomous) return next();
+      res.end();
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Server error");
+    }
+  };
+}
+
+export function checkEmailEligibility(autonomous: boolean) {
+  return async (
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction
+  ): Promise<express.Response | void> => {
+    try {
+      const email: string = req.body.email;
+      if (!email) {
+        return res.status(400).send('Invalid input: "email" is required');
+      } else if (await UserAuthSchema.findOne({ email })) {
+        return res
+          .status(409)
+          .send("A user with this email address already exists");
+      }
+      if (!autonomous) return next();
+      res.end();
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Server error");
+    }
+  };
+}
+
 interface TokenPayload {
   user_id: string;
   isAdmin: boolean;
 }
 
 export function verifyToken(verifyAdmin: boolean) {
-  return (
+  return async (
     req: express.Request,
     res: express.Response,
     next: express.NextFunction
-  ) => {
+  ): Promise<express.Response | void> => {
     const token =
       req.body.token || req.query.token || req.headers["x-access-token"];
     if (!token) {

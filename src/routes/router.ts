@@ -1,4 +1,6 @@
 import {
+  checkEmailEligibility,
+  checkUsernameEligibility,
   loginUser,
   registerUser,
   verifyToken,
@@ -16,12 +18,20 @@ import {
   updateUserData,
   updateUserDataByUsername,
 } from "../controllers/userDataController";
+import { getUsersRecords } from "../controllers/userRecordsController";
 
 export const router = express.Router();
 
 /* Auth handlers */
 router.post("/login", loginUser);
-router.post("/register", registerUser);
+router.post(
+  "/register",
+  checkEmailEligibility(false),
+  checkUsernameEligibility(false),
+  registerUser
+);
+router.post("/register/check-username", checkUsernameEligibility(true));
+router.post("/register/check-email", checkEmailEligibility(true));
 
 /* User's user avatar handlers */
 router.patch(
@@ -58,3 +68,5 @@ router.patch(
   getUserDataByUsername
 );
 router.get("/user/:username", verifyToken(true), getUserDataByUsername);
+
+router.get("/records", verifyToken(false), getUsersRecords);
