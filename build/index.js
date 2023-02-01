@@ -4,7 +4,8 @@ dotenv.config();
 import logger from "morgan";
 import cors from "cors";
 import { router } from "./routes/router.js";
-import { connect } from "./model/db.js";
+import { connect, initGridFSBucket } from "./model/db.js";
+import mongoose from "mongoose";
 
 export const PORT = process.env.PORT;
 export const MONGODB_URI = process.env.MONGODB_URI;
@@ -20,7 +21,10 @@ app.use(
 );
 app.use("/", router);
 export function listen() {
-    app.listen(PORT);
-    console.log("Server started at http://localhost:" + PORT);
+    mongoose.connect(MONGODB_URI, {}).then(() => {
+        initGridFSBucket();
+        app.listen(PORT);
+        console.log("Server started at http://localhost:" + PORT);
+    });
 }
-connect();
+listen();

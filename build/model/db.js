@@ -22,7 +22,7 @@ export async function connect() {
 }
 
 export let bucket;
-function initGridFSBucket() {
+export function initGridFSBucket() {
     const db = mongoose.connections[0].db;
     bucket = new mongoose.mongo.GridFSBucket(db, {
         bucketName: "filesBucket",
