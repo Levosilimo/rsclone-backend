@@ -49,11 +49,7 @@ function connect() {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    mongoose_1["default"].set("strictQuery", true);
                     mongoose_1["default"].connection
-                        .on("error", console.error)
-                        .on("disconnected", connect)
-                        .on("connected", initGridFSBucket)
                         .once("open", index_1.listen);
                     _a.label = 1;
                 case 1:
