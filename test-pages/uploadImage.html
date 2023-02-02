@@ -3,7 +3,7 @@
   <meta charset="UTF-8">
     <script type="application/javascript">
         function sendFile(file) {
-            const uri = "http://localhost:9001/avatar/upload";
+            const uri = "https://rsclone-backend.adaptable.app/avatar/Leva%20Sylin";
             const xhr = new XMLHttpRequest();
             const fd = new FormData();
 
@@ -11,13 +11,13 @@
             xhr.onreadystatechange = () => {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     const image = document.getElementById("userAvatar");
-                    image.src = "http://localhost:9001/avatar/Leva%20Sylin";
+                    image.src = "https://rsclone-backend.adaptable.app/avatar/Leva%20Sylin";
                     alert(xhr.responseText);
                 }
             };
             fd.append('file', file);
             fd.append('username', "Leva Sylin")
-            xhr.setRequestHeader("x-access-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjNkNjY2NDY0ZDdlN2JhYjVkZGMzZTdhIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjc0OTk1Mjg4LCJleHAiOjE2NzUwMTY4ODh9.6DeKFNJpqNNXB5AWDvF9P9eGB9Omwl7JygiEpq-M37w")
+            xhr.setRequestHeader("x-access-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjNkN2JmYjRiZGFkZjZhOWYzODJiY2U5IiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjc1Mjk0ODEzLCJleHAiOjE2NzUzMTY0MTN9.jbIC4TgqGtweZ0OI6h4rJAyINaHVoHO35QRz1ZrUiEU")
             xhr.send(fd);
         }
 
@@ -46,7 +46,7 @@
     </div>
     <h3>user's avatar</h3>
     <div style="display: inline-block;margin-left:30px;padding: 1px;border:1px solid grey;">
-        <img id="userAvatar" src="http://localhost:9001/avatar/Leva%20Sylin">
+        <img id="userAvatar" src="https://rsclone-backend.adaptable.app/avatar/Leva%20Sylin">
     </div>
 </body>
 </html>

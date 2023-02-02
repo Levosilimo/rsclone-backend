@@ -19,8 +19,10 @@ app.use(
   )
 );
 app.use("/", router);
+
 export function listen(): void {
   app.listen(PORT);
   console.log("Server started at http://localhost:" + PORT);
 }
+
 connect();

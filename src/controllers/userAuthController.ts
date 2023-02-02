@@ -23,26 +23,19 @@ export async function loginUser(
   res: express.Response
 ): Promise<express.Response | void> {
   try {
-    const { login, password, adminPassword }: LoginCredentialsRequestBody =
-      req.body;
-    let isAdmin = false;
+    const { login, password }: LoginCredentialsRequestBody = req.body;
     if (!(login && password)) {
       return res
         .status(400)
         .send('Invalid input: "password" and "login" are required');
-    } else if (adminPassword) {
-      if (adminPassword !== process.env.ADMIN_PASSWORD)
-        return res.status(401).send("Incorrect admin password");
-      isAdmin = true;
     }
     const user: HydratedDocument<UserAuth> =
       (await UserAuthSchema.findOne({ email: login })) ||
       (await UserAuthSchema.findOne({ username: login }));
     const encryptedPassword: string = user.password;
     if (user && (await bcrypt.compare(password, encryptedPassword))) {
-      user.update({ isAdmin });
       const token = jwt.sign(
-        { user_id: user._id, isAdmin },
+        { user_id: user._id, isAdmin: user.isAdmin },
         process.env.TOKEN_KEY,
         {
           expiresIn: process.env.TOKEN_LIFETIME,

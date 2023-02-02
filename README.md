@@ -241,7 +241,6 @@ Validates credentials. Returns a token on success
       {
         login: string;
         password: string;
-        adminPassword?: string;
       }
     ```
 
@@ -269,12 +268,6 @@ Validates credentials. Returns a token on success
 
       User with this "password" and "login" was not found
 
-  OR
-
-    * **Code:** 401 UNAUTHORIZED <br />
-      **Content:**
-
-      Invalid admin password
 
 * **Notes:**
 

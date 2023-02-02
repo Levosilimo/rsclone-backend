@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "start": "node ./build/index.js"
+    "start": "node ./build/index.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix --ext .js,.ts ."
   },
   "repository": {
     "type": "git",
@@ -32,7 +34,7 @@
     "clean-webpack-plugin": "^4.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
-    "eslint": "8.22.0",
+    "eslint": "^8.22.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-webpack-plugin": "^3.2.0",
     "jsonwebtoken": "^9.0.0",

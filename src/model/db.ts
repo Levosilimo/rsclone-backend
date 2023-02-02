@@ -16,7 +16,7 @@ export async function connect(): Promise<Mongoose> {
     .on("connected", initGridFSBucket)
     .once("open", listen);
   try {
-    return await mongoose.connect(MONGODB_URI, {});
+    return mongoose.connect(MONGODB_URI, {});
   } catch (err) {
     throw err;
   }
