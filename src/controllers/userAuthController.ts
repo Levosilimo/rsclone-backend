@@ -15,7 +15,6 @@ interface RegistrationCredentialsRequestBody {
 interface LoginCredentialsRequestBody {
   login: string;
   password: string;
-  adminPassword?: string;
 }
 
 export async function loginUser(
@@ -54,6 +53,9 @@ export async function loginUser(
   }
 }
 
+const MAIL_REGEXP =
+  /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+
 export async function registerUser(
   req: express.Request,
   res: express.Response
@@ -70,7 +72,13 @@ export async function registerUser(
       return res
         .status(400)
         .send('Invalid input: "email", "password" and "username" are required');
-    } else if (adminPassword) {
+    } else if (!MAIL_REGEXP.test(email))
+      return res.status(400).send("Invalid email");
+    else if (password.length < 6)
+      return res
+        .status(400)
+        .send("Password must be at least 6 characters long");
+    else if (adminPassword) {
       if (adminPassword !== process.env.ADMIN_PASSWORD)
         return res.status(401).send("Invalid admin password");
       isAdmin = true;

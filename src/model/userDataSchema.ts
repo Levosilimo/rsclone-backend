@@ -14,8 +14,6 @@ const UserDataSchema = new Schema<UserData>({
   language: { type: String, required: true, default: "en_us" },
   avatarId: {
     type: ObjectId,
-    required: true,
-    default: "63d663c156bef39ec55d01ae",
   },
 });
 

@@ -4,7 +4,7 @@ import UserDataSchema, { UserData } from "../model/userDataSchema";
 import { Readable } from "stream";
 import { avatarStorage, bucket } from "../model/db";
 import { HydratedDocument } from "mongoose";
-import { GridFSFile } from "mongodb";
+import { GridFSFile, ObjectId } from "mongodb";
 
 export async function updateAvatar(
   req: express.Request,
@@ -50,6 +50,7 @@ export async function updateAvatarByUsername(
   }
 }
 
+const DEFAULT_AVATARID = new ObjectId(process.env.DEFAULT_AVATARID);
 export async function getAvatar(
   req: express.Request,
   res: express.Response
@@ -63,15 +64,18 @@ export async function getAvatar(
     });
     if (!user)
       return res.status(404).send('User with this "username" not found');
+    if (!user.avatarId) {
+      bucket.openDownloadStream(DEFAULT_AVATARID).pipe(res);
+      return;
+    }
+    let avatarId: ObjectId;
     const files: GridFSFile[] = await bucket
       .find({ _id: user.avatarId })
       .toArray();
     if (!files || files.length === 0) {
-      return res.status(404).json({
-        err: "User does not have an avatar",
-      });
-    }
-    bucket.openDownloadStream(user.avatarId).pipe(res);
+      avatarId = DEFAULT_AVATARID;
+    } else avatarId = user.avatarId;
+    bucket.openDownloadStream(avatarId).pipe(res);
   } catch (err) {
     console.error(err);
     res.status(500).send("Server error");
