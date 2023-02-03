@@ -9,6 +9,7 @@ import * as express from "express";
 import { upload } from "../model/db";
 import {
   getAvatar,
+  processAvatar,
   updateAvatar,
   updateAvatarByUsername,
 } from "../controllers/userAvatarController";
@@ -19,6 +20,7 @@ import {
   updateUserDataByUsername,
 } from "../controllers/userDataController";
 import { getUsersRecords } from "../controllers/userRecordsController";
+import { getLevel } from "../controllers/levelDataController";
 
 export const router = express.Router();
 
@@ -35,10 +37,11 @@ router.post("/register/check-email", checkEmailEligibility(true));
 
 /* User's user avatar handlers */
 router.patch(
-  "/avatar/",
+  "/avatar",
   // We need this check to stop unauthenticated users from uploading images to the server
   verifyToken(false),
   upload.single("file"),
+  processAvatar,
   // Body gets empty after multer processing, so we need to get the id from the token again
   verifyToken(false),
   updateAvatar
@@ -51,6 +54,7 @@ router.patch(
   // We need this check to stop unauthenticated users from uploading images to the server
   verifyToken(true),
   upload.single("file"),
+  processAvatar,
   // Body gets empty after multer processing, so we need to get the id from the token again
   verifyToken(true),
   updateAvatarByUsername
@@ -70,3 +74,5 @@ router.patch(
 router.get("/user/:username", verifyToken(true), getUserDataByUsername);
 
 router.get("/records", verifyToken(false), getUsersRecords);
+
+router.get("/levels/:game/:level", verifyToken(false), getLevel);

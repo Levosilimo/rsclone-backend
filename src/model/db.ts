@@ -30,7 +30,7 @@ function initGridFSBucket(): void {
   });
 }
 
-const storage = new GridFsStorage({
+export const avatarStorage = new GridFsStorage({
   url: process.env.MONGODB_URI,
   file: (req: express.Request) => {
     return new Promise((resolve) => {
@@ -60,4 +60,4 @@ const fileFilter = (
   }
 };
 
-export const upload = multer({ storage: storage, fileFilter: fileFilter });
+export const upload = multer({ fileFilter: fileFilter });

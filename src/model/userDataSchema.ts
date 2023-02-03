@@ -11,7 +11,7 @@ export interface UserData {
 const UserDataSchema = new Schema<UserData>({
   username: { type: String, unique: true, required: true },
   levelFlexbox: { type: Number, required: true, default: 1 },
-  language: { type: String, required: true, default: "en-us" },
+  language: { type: String, required: true, default: "en_us" },
   avatarId: {
     type: ObjectId,
     required: true,

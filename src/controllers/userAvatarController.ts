@@ -1,6 +1,8 @@
-import UserDataSchema, { UserData } from "../model/userDataSchema";
 import * as express from "express";
-import { bucket } from "../model/db";
+import * as sharp from "sharp";
+import UserDataSchema, { UserData } from "../model/userDataSchema";
+import { Readable } from "stream";
+import { avatarStorage, bucket } from "../model/db";
 import { HydratedDocument } from "mongoose";
 import { GridFSFile } from "mongodb";
 
@@ -11,7 +13,7 @@ export async function updateAvatar(
   try {
     // Field "id" is not typed in Multer.File
     // @ts-ignore
-    const { id } = req.file;
+    const id = req.body.avatarId;
     const userId = req.body.userData.user_id;
     await UserDataSchema.findOneAndUpdate(
       { _id: userId },
@@ -32,7 +34,7 @@ export async function updateAvatarByUsername(
   try {
     // Field "id" is not typed in Multer.File
     // @ts-ignore
-    const { id } = req.file;
+    const id = req.body.avatarId;
     const username = req.params.username;
     if (username) {
       await UserDataSchema.findOneAndUpdate(
@@ -70,6 +72,31 @@ export async function getAvatar(
       });
     }
     bucket.openDownloadStream(user.avatarId).pipe(res);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+  }
+}
+
+export async function processAvatar(
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction
+): Promise<express.Response | void> {
+  try {
+    const file = req.file;
+    const buffer = file.buffer;
+    sharp(buffer)
+      .resize(192, 192, { fit: "contain", background: "#fff" })
+      .flatten({ background: "#fff" })
+      .jpeg({ quality: 50 })
+      .toBuffer((err, data) => {
+        const fileStream = Readable.from(data);
+        avatarStorage.fromStream(fileStream, req, file).then((data) => {
+          req.body.avatarId = data.id;
+          next();
+        });
+      });
   } catch (err) {
     console.error(err);
     res.status(500).send("Server error");
