@@ -7,6 +7,7 @@
 - [Update User Data](#update-user-data)
 - [Get User Data](#get-user-data)
 - [Get Records](#get-records)
+- [Get Level](#get-level)
 
 **Register User**
 ----
@@ -447,7 +448,7 @@ Validates token. Replaces user data with the data from request's body. Returns o
 
     ```typescript
       {
-        language?: string;
+        language?: "en_us" | "es_es" | "ru" | "uk" | string;
         levelFlexbox?: number;
       }
     ```
@@ -527,7 +528,7 @@ Validates token. Returns object of mutable user data.
       **Content:**
       ```json
         {
-           "language": "en-us",
+           "language": "en_us",
            "levelFlexbox": "1"
         }
       ```
@@ -653,5 +654,78 @@ Validates a token. Returns an array of users records objects.
 * **Notes:**
 
     None
+
+</details>
+
+**Get Level**
+----
+Validates token. Returns level data according to user's language.
+
+<details>
+
+* **URL**
+
+  /levels/:game/:level
+
+* **Method:**
+
+  `GET`
+
+* **Headers:**
+
+  `'x-access-token': ${token}`
+
+* **URL Params**
+
+  **Required:**
+
+  * `game = "flexbox" | [string]`
+  * `level = [number]`
+
+* **Query Params**
+
+  None
+
+* **Data Params**
+
+  None
+
+* **Success Response:**
+
+    * **Code:** 200 OK <br />
+      **Content:**
+      ```json
+      {
+         "winCondition": "justify-content: flex-end",
+         "name": "Distributing Space Inside a Flex Container",
+         "description": "<p>Welcome to Flexbox Froggy, a game where you help Froggy and friends by writing CSS code! Guide this frog to the lilypad on the right by using the <code>justify-content</code> property, which aligns items horizontally and accepts the following values:</p><ul><li><code>flex-start</code>: Items align to the left side of the container.</li><li><code>flex-end</code>: Items align to the right side of the container.</li><li><code>center</code>: Items align at the center of the container.</li><li><code>space-between</code>: Items display with equal spacing between them.</li><li><code>space-around</code>: Items display with equal spacing around them.</li></ul><p>For example, <code>justify-content: flex-end;</code> will move the frog to the right.</p>",
+         "submitText": "Next Level"
+      }
+      ```
+
+* **Error Response:**
+
+    * **Code:** 403 FORBIDDEN <br />
+      **Content:**
+
+      A token is required for authentication
+
+  OR
+
+    * **Code:** 401 UNAUTHORIZED <br />
+      **Content:**
+
+      Invalid Token
+
+  OR
+
+    * **Code:** 404 NOT FOUND <br />
+      **Content:**
+
+      Level ${levelNumber} of the game "${game}" not found
+
+* **Notes:**
+
+    None    
 
 </details>
