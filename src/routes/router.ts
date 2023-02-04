@@ -20,7 +20,7 @@ import {
   updateUserDataByUsername,
 } from "../controllers/userDataController";
 import { getUsersRecords } from "../controllers/userRecordsController";
-import { getLevel } from "../controllers/levelDataController";
+import { addLevel, getLevel } from "../controllers/levelDataController";
 
 export const router = express.Router();
 
@@ -76,3 +76,4 @@ router.get("/user/:username", verifyToken(true), getUserDataByUsername);
 router.get("/records", verifyToken(false), getUsersRecords);
 
 router.get("/levels/:game/:level", verifyToken(false), getLevel);
+router.post("/levels", addLevel);

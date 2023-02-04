@@ -1,0 +1,884 @@
+[
+   {
+      "levelNumber": 1,
+      "game": "flexbox",
+      "winCondition":"justify-content: flex-end",
+      "name":{
+        "en_us":"Distributing Space Inside a Flex Container",
+        "es_es":"Distribución del espacio en Flex Сontenedor",
+        "ru":"Распределение пространства в Flex контейнере",
+        "uk":"Розподіл простору в Flex контейнеру"
+      },
+      "description":{
+        "paragraph":{
+          "en_us":"Welcome to Flexbox Froggy, a game where you help Froggy and friends by writing CSS code! Guide this frog to the lilypad on the right by using the <code>justify-content</code> property, which aligns items horizontally and accepts the following values:",
+          "es_es":"Bienvenido a Flexbox Froggy, un juego donde ayudarás a Froggy y a sus amigos escribiendo código CSS. Guía a esta rana hacia la hoja de lirio en la derecha, usando la propiedad <code>justify-content</code>, la cual alinea elementos horizontalmente y acepta los siguientes valores:",
+          "ru":"Добро пожаловать в Flexbox Froggy. Игра, в которой тебе нужно помочь лягушонку Фроги и его друзьям, написав CSS код! Направь этого лягушонка на лилию справа, используя свойство <code>justify-content</code>, которое выравнивает элементы горизонтально и принимает следующие значения:",
+          "uk":"Вітаємо у Flexbox Froggy - гра, де ви маєте допомогати жабеняті Фрогі та його друзям написанням CSS коду! Всади жабеня на лист латаття праворуч, за допомогою властивості <code>justify-content</code>, яка вирівнює елементи по горизонталі й набуває таких значень:"
+        },
+        "rulesList":[
+          {
+            "en_us":"<code>flex-start</code>: Items align to the left side of the container.",
+            "es_es":"<code>flex-start</code>: Alinea elementos al lado izquierdo del contenedor.",
+            "ru":"<code>flex-start</code>: Элементы выравниваются по левой стороне контейнера.",
+            "uk":"<code>flex-start</code>: Елементи буде вирівняно по лівій стороні контейнера."
+          },
+          {
+            "en_us":"<code>flex-end</code>: Items align to the right side of the container.",
+            "es_es":"<code>flex-end</code>: Alinea elementos al lado derecho del contenedor.",
+            "ru":"<code>flex-end</code>: Элементы выравниваются по правой стороне контейнера.",
+            "uk":"<code>flex-end</code>: Елементи буде вирівняно по правій стороні контейнера."
+          },
+          {
+            "en_us":"<code>center</code>: Items align at the center of the container.",
+            "es_es":"<code>center</code>: Alinea elementos en el centro del contenedor.",
+            "ru":"<code>center</code>: Элементы выравниваются по центру контейнера.",
+            "uk":"<code>center</code>: Елементи буде вирівняно по центру контейнера."
+          },
+          {
+            "en_us":"<code>space-between</code>: Items display with equal spacing between them.",
+            "es_es":"<code>space-between</code>: Muestra elementos con la misma distancia entre ellos.",
+            "ru":"<code>space-between</code>: Элементы отображаются с одинаковыми отступами между ними.",
+            "uk":"<code>space-between</code>: Елементи буде зображено з рівними відступами поміж них."
+          },
+          {
+            "en_us":"<code>space-around</code>: Items display with equal spacing around them.",
+            "es_es":"<code>space-around</code>: Muestra elementos con la misma separación alrededor de ellos.",
+            "ru":"<code>space-around</code>: Элементы отображаются с одинаковыми отступами вокруг них.",
+            "uk":"<code>space-around</code>: Елементи буде зображено з рівними відступами навколо них."
+          }
+        ],
+        "example":{
+          "en_us":"For example, <code>justify-content: flex-end;</code> will move the frog to the right.",
+          "es_es":"Por ejemplo, <code>justify-content: flex-end;</code> moverá la rana a la derecha.",
+          "ru":"Например, <code>justify-content: flex-end;</code> сдвинет лягушонка вправо.",
+          "uk":"Наприклад, <code>justify-content: flex-end;</code> пересуне жабеня праворуч."
+        }
+      },
+      "submitText":{
+        "en_us":"Next Level",
+        "es_es":"Siguiente Nivel",
+        "ru":"Следующий Уровень",
+        "uk":"Наступний Рівень"
+      }
+    },
+    {
+      "levelNumber": 2,
+      "game": "flexbox",
+      "winCondition":"justify-content: center",
+      "name":{
+        "en_us":"Distributing Space Inside a Flex Container 2",
+        "es_es":"Distribución del espacio en Flex Сontenedor 2",
+        "ru":"Распределение пространства в Flex контейнере 2",
+        "uk":"Розподіл простору в Flex контейнеру 2"
+      },
+      "description":{
+        "paragraph":{
+          "en_us":"Use <code>justify-content</code> again to help these frogs get to their lilypads. Remember that this CSS property aligns items horizontally and accepts the following values:",
+          "es_es":"Nuevamente, utiliza <code>justify-content</code> para ayudar a esas ranas a llegar a sus hojas de lirio. Recuerda que esta propiedad CSS alinea elementos horizontalmente y acepta los siguientes valores:",
+          "ru":"Используй <code>justify-content</code> ещё раз, чтобы помочь этим лягушатам попасть на их лилии. Помни, что это свойство CSS выравнивает элементы горизонтально и принимает следующие значения:",
+          "uk":"Скористайся <code>justify-content</code> ще раз, та допоможи жабенятам потрапити на свої листи латаття. Памʼятай, що ця CSS-властивість вирівнює елементи горизонтально та набуває таких значень:"
+        },
+        "rulesList":[
+          {
+            "en_us":"<code>flex-start</code>: Items align to the left side of the container.",
+            "es_es":"<code>flex-start</code>: Alinea elementos al lado izquierdo del contenedor.",
+            "ru":"<code>flex-start</code>: Элементы выравниваются по левой стороне контейнера.",
+            "uk":"<code>flex-start</code>: Елементи буде вирівняно по лівій стороні контейнера."
+          },
+          {
+            "en_us":"<code>flex-end</code>: Items align to the right side of the container.",
+            "es_es":"<code>flex-end</code>: Alinea elementos al lado derecho del contenedor.",
+            "ru":"<code>flex-end</code>: Элементы выравниваются по правой стороне контейнера.",
+            "uk":"<code>flex-end</code>: Елементи буде вирівняно по правій стороні контейнера."
+          },
+          {
+            "en_us":"<code>center</code>: Items align at the center of the container.",
+            "es_es":"<code>center</code>: Alinea elementos en el centro del contenedor.",
+            "ru":"<code>center</code>: Элементы выравниваются по центру контейнера.",
+            "uk":"<code>center</code>: Елементи буде вирівняно по центру контейнера."
+          },
+          {
+            "en_us":"<code>space-between</code>: Items display with equal spacing between them.",
+            "es_es":"<code>space-between</code>: Muestra elementos con la misma distancia entre ellos.",
+            "ru":"<code>space-between</code>: Элементы отображаются с одинаковыми отступами между ними.",
+            "uk":"<code>space-between</code>: Елементи буде зображено з рівними відступами поміж них."
+          },
+          {
+            "en_us":"<code>space-around</code>: Items display with equal spacing around them.",
+            "es_es":"<code>space-around</code>: Muestra elementos con la misma separación alrededor de ellos.",
+            "ru":"<code>space-around</code>: Элементы отображаются с одинаковыми отступами вокруг них.",
+            "uk":"<code>space-around</code>: Елементи буде зображено з рівними відступами навколо них."
+          }
+        ],
+        "example":{
+          "en_us":"For example, <code>justify-content: flex-end;</code> will move the frog to the right.",
+          "es_es":"Por ejemplo, <code>justify-content: flex-end;</code> moverá la rana a la derecha.",
+          "ru":"Например, <code>justify-content: flex-end;</code> сдвинет лягушонка вправо.",
+          "uk":"Наприклад, <code>justify-content: flex-end;</code> пересуне жабеня праворуч."
+        }
+      },
+      "submitText":{
+        "en_us":"Next Level",
+        "es_es":"Siguiente Nivel",
+        "ru":"Следующий Уровень",
+        "uk":"Наступний Рівень"
+      }
+    },
+    {
+      "levelNumber": 3,
+      "game": "flexbox",
+      "winCondition":"justify-content: flex-end",
+      "name":{
+        "en_us":"Distributing Space Inside a Flex Container",
+        "es_es":"Distribución del espacio en Flex Сontenedor",
+        "ru":"Распределение пространства в Flex контейнере",
+        "uk":"Розподіл простору в Flex контейнеру"
+      },
+      "description":{
+        "paragraph":{
+          "en_us":"Welcome to Flexbox Froggy, a game where you help Froggy and friends by writing CSS code! Guide this frog to the lilypad on the right by using the <code>justify-content</code> property, which aligns items horizontally and accepts the following values:",
+          "es_es":"Bienvenido a Flexbox Froggy, un juego donde ayudarás a Froggy y a sus amigos escribiendo código CSS. Guía a esta rana hacia la hoja de lirio en la derecha, usando la propiedad <code>justify-content</code>, la cual alinea elementos horizontalmente y acepta los siguientes valores:",
+          "ru":"Добро пожаловать в Flexbox Froggy. Игра, в которой тебе нужно помочь лягушонку Фроги и его друзьям, написав CSS код! Направь этого лягушонка на лилию справа, используя свойство <code>justify-content</code>, которое выравнивает элементы горизонтально и принимает следующие значения:",
+          "uk":"Вітаємо у Flexbox Froggy - гра, де ви маєте допомогати жабеняті Фрогі та його друзям написанням CSS коду! Всади жабеня на лист латаття праворуч, за допомогою властивості <code>justify-content</code>, яка вирівнює елементи по горизонталі й набуває таких значень:"
+        },
+        "rulesList":[
+          {
+            "en_us":"<code>flex-start</code>: Items align to the left side of the container.",
+            "es_es":"<code>flex-start</code>: Alinea elementos al lado izquierdo del contenedor.",
+            "ru":"<code>flex-start</code>: Элементы выравниваются по левой стороне контейнера.",
+            "uk":"<code>flex-start</code>: Елементи буде вирівняно по лівій стороні контейнера."
+          },
+          {
+            "en_us":"<code>flex-end</code>: Items align to the right side of the container.",
+            "es_es":"<code>flex-end</code>: Alinea elementos al lado derecho del contenedor.",
+            "ru":"<code>flex-end</code>: Элементы выравниваются по правой стороне контейнера.",
+            "uk":"<code>flex-end</code>: Елементи буде вирівняно по правій стороні контейнера."
+          },
+          {
+            "en_us":"<code>center</code>: Items align at the center of the container.",
+            "es_es":"<code>center</code>: Alinea elementos en el centro del contenedor.",
+            "ru":"<code>center</code>: Элементы выравниваются по центру контейнера.",
+            "uk":"<code>center</code>: Елементи буде вирівняно по центру контейнера."
+          },
+          {
+            "en_us":"<code>space-between</code>: Items display with equal spacing between them.",
+            "es_es":"<code>space-between</code>: Muestra elementos con la misma distancia entre ellos.",
+            "ru":"<code>space-between</code>: Элементы отображаются с одинаковыми отступами между ними.",
+            "uk":"<code>space-between</code>: Елементи буде зображено з рівними відступами поміж них."
+          },
+          {
+            "en_us":"<code>space-around</code>: Items display with equal spacing around them.",
+            "es_es":"<code>space-around</code>: Muestra elementos con la misma separación alrededor de ellos.",
+            "ru":"<code>space-around</code>: Элементы отображаются с одинаковыми отступами вокруг них.",
+            "uk":"<code>space-around</code>: Елементи буде зображено з рівними відступами навколо них."
+          }
+        ],
+        "example":{
+          "en_us":"For example, <code>justify-content: flex-end;</code> will move the frog to the right.",
+          "es_es":"Por ejemplo, <code>justify-content: flex-end;</code> moverá la rana a la derecha.",
+          "ru":"Например, <code>justify-content: flex-end;</code> сдвинет лягушонка вправо.",
+          "uk":"Наприклад, <code>justify-content: flex-end;</code> пересуне жабеня праворуч."
+        }
+      },
+      "submitText":{
+        "en_us":"Next Level",
+        "es_es":"Siguiente Nivel",
+        "ru":"Следующий Уровень",
+        "uk":"Наступний Рівень"
+      }
+    },
+    {
+      "levelNumber": 4,
+      "game": "flexbox",
+      "winCondition":"justify-content: flex-end",
+      "name":{
+        "en_us":"Distributing Space Inside a Flex Container",
+        "es_es":"Distribución del espacio en Flex Сontenedor",
+        "ru":"Распределение пространства в Flex контейнере",
+        "uk":"Розподіл простору в Flex контейнеру"
+      },
+      "description":{
+        "paragraph":{
+          "en_us":"Welcome to Flexbox Froggy, a game where you help Froggy and friends by writing CSS code! Guide this frog to the lilypad on the right by using the <code>justify-content</code> property, which aligns items horizontally and accepts the following values:",
+          "es_es":"Bienvenido a Flexbox Froggy, un juego donde ayudarás a Froggy y a sus amigos escribiendo código CSS. Guía a esta rana hacia la hoja de lirio en la derecha, usando la propiedad <code>justify-content</code>, la cual alinea elementos horizontalmente y acepta los siguientes valores:",
+          "ru":"Добро пожаловать в Flexbox Froggy. Игра, в которой тебе нужно помочь лягушонку Фроги и его друзьям, написав CSS код! Направь этого лягушонка на лилию справа, используя свойство <code>justify-content</code>, которое выравнивает элементы горизонтально и принимает следующие значения:",
+          "uk":"Вітаємо у Flexbox Froggy - гра, де ви маєте допомогати жабеняті Фрогі та його друзям написанням CSS коду! Всади жабеня на лист латаття праворуч, за допомогою властивості <code>justify-content</code>, яка вирівнює елементи по горизонталі й набуває таких значень:"
+        },
+        "rulesList":[
+          {
+            "en_us":"<code>flex-start</code>: Items align to the left side of the container.",
+            "es_es":"<code>flex-start</code>: Alinea elementos al lado izquierdo del contenedor.",
+            "ru":"<code>flex-start</code>: Элементы выравниваются по левой стороне контейнера.",
+            "uk":"<code>flex-start</code>: Елементи буде вирівняно по лівій стороні контейнера."
+          },
+          {
+            "en_us":"<code>flex-end</code>: Items align to the right side of the container.",
+            "es_es":"<code>flex-end</code>: Alinea elementos al lado derecho del contenedor.",
+            "ru":"<code>flex-end</code>: Элементы выравниваются по правой стороне контейнера.",
+            "uk":"<code>flex-end</code>: Елементи буде вирівняно по правій стороні контейнера."
+          },
+          {
+            "en_us":"<code>center</code>: Items align at the center of the container.",
+            "es_es":"<code>center</code>: Alinea elementos en el centro del contenedor.",
+            "ru":"<code>center</code>: Элементы выравниваются по центру контейнера.",
+            "uk":"<code>center</code>: Елементи буде вирівняно по центру контейнера."
+          },
+          {
+            "en_us":"<code>space-between</code>: Items display with equal spacing between them.",
+            "es_es":"<code>space-between</code>: Muestra elementos con la misma distancia entre ellos.",
+            "ru":"<code>space-between</code>: Элементы отображаются с одинаковыми отступами между ними.",
+            "uk":"<code>space-between</code>: Елементи буде зображено з рівними відступами поміж них."
+          },
+          {
+            "en_us":"<code>space-around</code>: Items display with equal spacing around them.",
+            "es_es":"<code>space-around</code>: Muestra elementos con la misma separación alrededor de ellos.",
+            "ru":"<code>space-around</code>: Элементы отображаются с одинаковыми отступами вокруг них.",
+            "uk":"<code>space-around</code>: Елементи буде зображено з рівними відступами навколо них."
+          }
+        ],
+        "example":{
+          "en_us":"For example, <code>justify-content: flex-end;</code> will move the frog to the right.",
+          "es_es":"Por ejemplo, <code>justify-content: flex-end;</code> moverá la rana a la derecha.",
+          "ru":"Например, <code>justify-content: flex-end;</code> сдвинет лягушонка вправо.",
+          "uk":"Наприклад, <code>justify-content: flex-end;</code> пересуне жабеня праворуч."
+        }
+      },
+      "submitText":{
+        "en_us":"Next Level",
+        "es_es":"Siguiente Nivel",
+        "ru":"Следующий Уровень",
+        "uk":"Наступний Рівень"
+      }
+    },
+    {
+      "levelNumber": 5,
+      "game": "flexbox",
+      "winCondition":"justify-content: flex-end",
+      "name":{
+        "en_us":"Distributing Space Inside a Flex Container",
+        "es_es":"Distribución del espacio en Flex Сontenedor",
+        "ru":"Распределение пространства в Flex контейнере",
+        "uk":"Розподіл простору в Flex контейнеру"
+      },
+      "description":{
+        "paragraph":{
+          "en_us":"Welcome to Flexbox Froggy, a game where you help Froggy and friends by writing CSS code! Guide this frog to the lilypad on the right by using the <code>justify-content</code> property, which aligns items horizontally and accepts the following values:",
+          "es_es":"Bienvenido a Flexbox Froggy, un juego donde ayudarás a Froggy y a sus amigos escribiendo código CSS. Guía a esta rana hacia la hoja de lirio en la derecha, usando la propiedad <code>justify-content</code>, la cual alinea elementos horizontalmente y acepta los siguientes valores:",
+          "ru":"Добро пожаловать в Flexbox Froggy. Игра, в которой тебе нужно помочь лягушонку Фроги и его друзьям, написав CSS код! Направь этого лягушонка на лилию справа, используя свойство <code>justify-content</code>, которое выравнивает элементы горизонтально и принимает следующие значения:",
+          "uk":"Вітаємо у Flexbox Froggy - гра, де ви маєте допомогати жабеняті Фрогі та його друзям написанням CSS коду! Всади жабеня на лист латаття праворуч, за допомогою властивості <code>justify-content</code>, яка вирівнює елементи по горизонталі й набуває таких значень:"
+        },
+        "rulesList":[
+          {
+            "en_us":"<code>flex-start</code>: Items align to the left side of the container.",
+            "es_es":"<code>flex-start</code>: Alinea elementos al lado izquierdo del contenedor.",
+            "ru":"<code>flex-start</code>: Элементы выравниваются по левой стороне контейнера.",
+            "uk":"<code>flex-start</code>: Елементи буде вирівняно по лівій стороні контейнера."
+          },
+          {
+            "en_us":"<code>flex-end</code>: Items align to the right side of the container.",
+            "es_es":"<code>flex-end</code>: Alinea elementos al lado derecho del contenedor.",
+            "ru":"<code>flex-end</code>: Элементы выравниваются по правой стороне контейнера.",
+            "uk":"<code>flex-end</code>: Елементи буде вирівняно по правій стороні контейнера."
+          },
+          {
+            "en_us":"<code>center</code>: Items align at the center of the container.",
+            "es_es":"<code>center</code>: Alinea elementos en el centro del contenedor.",
+            "ru":"<code>center</code>: Элементы выравниваются по центру контейнера.",
+            "uk":"<code>center</code>: Елементи буде вирівняно по центру контейнера."
+          },
+          {
+            "en_us":"<code>space-between</code>: Items display with equal spacing between them.",
+            "es_es":"<code>space-between</code>: Muestra elementos con la misma distancia entre ellos.",
+            "ru":"<code>space-between</code>: Элементы отображаются с одинаковыми отступами между ними.",
+            "uk":"<code>space-between</code>: Елементи буде зображено з рівними відступами поміж них."
+          },
+          {
+            "en_us":"<code>space-around</code>: Items display with equal spacing around them.",
+            "es_es":"<code>space-around</code>: Muestra elementos con la misma separación alrededor de ellos.",
+            "ru":"<code>space-around</code>: Элементы отображаются с одинаковыми отступами вокруг них.",
+            "uk":"<code>space-around</code>: Елементи буде зображено з рівними відступами навколо них."
+          }
+        ],
+        "example":{
+          "en_us":"For example, <code>justify-content: flex-end;</code> will move the frog to the right.",
+          "es_es":"Por ejemplo, <code>justify-content: flex-end;</code> moverá la rana a la derecha.",
+          "ru":"Например, <code>justify-content: flex-end;</code> сдвинет лягушонка вправо.",
+          "uk":"Наприклад, <code>justify-content: flex-end;</code> пересуне жабеня праворуч."
+        }
+      },
+      "submitText":{
+        "en_us":"Next Level",
+        "es_es":"Siguiente Nivel",
+        "ru":"Следующий Уровень",
+        "uk":"Наступний Рівень"
+      }
+    },
+    {
+      "levelNumber": 6,
+      "game": "flexbox",
+      "winCondition":"justify-content: flex-end",
+      "name":{
+        "en_us":"Distributing Space Inside a Flex Container",
+        "es_es":"Distribución del espacio en Flex Сontenedor",
+        "ru":"Распределение пространства в Flex контейнере",
+        "uk":"Розподіл простору в Flex контейнеру"
+      },
+      "description":{
+        "paragraph":{
+          "en_us":"Welcome to Flexbox Froggy, a game where you help Froggy and friends by writing CSS code! Guide this frog to the lilypad on the right by using the <code>justify-content</code> property, which aligns items horizontally and accepts the following values:",
+          "es_es":"Bienvenido a Flexbox Froggy, un juego donde ayudarás a Froggy y a sus amigos escribiendo código CSS. Guía a esta rana hacia la hoja de lirio en la derecha, usando la propiedad <code>justify-content</code>, la cual alinea elementos horizontalmente y acepta los siguientes valores:",
+          "ru":"Добро пожаловать в Flexbox Froggy. Игра, в которой тебе нужно помочь лягушонку Фроги и его друзьям, написав CSS код! Направь этого лягушонка на лилию справа, используя свойство <code>justify-content</code>, которое выравнивает элементы горизонтально и принимает следующие значения:",
+          "uk":"Вітаємо у Flexbox Froggy - гра, де ви маєте допомогати жабеняті Фрогі та його друзям написанням CSS коду! Всади жабеня на лист латаття праворуч, за допомогою властивості <code>justify-content</code>, яка вирівнює елементи по горизонталі й набуває таких значень:"
+        },
+        "rulesList":[
+          {
+            "en_us":"<code>flex-start</code>: Items align to the left side of the container.",
+            "es_es":"<code>flex-start</code>: Alinea elementos al lado izquierdo del contenedor.",
+            "ru":"<code>flex-start</code>: Элементы выравниваются по левой стороне контейнера.",
+            "uk":"<code>flex-start</code>: Елементи буде вирівняно по лівій стороні контейнера."
+          },
+          {
+            "en_us":"<code>flex-end</code>: Items align to the right side of the container.",
+            "es_es":"<code>flex-end</code>: Alinea elementos al lado derecho del contenedor.",
+            "ru":"<code>flex-end</code>: Элементы выравниваются по правой стороне контейнера.",
+            "uk":"<code>flex-end</code>: Елементи буде вирівняно по правій стороні контейнера."
+          },
+          {
+            "en_us":"<code>center</code>: Items align at the center of the container.",
+            "es_es":"<code>center</code>: Alinea elementos en el centro del contenedor.",
+            "ru":"<code>center</code>: Элементы выравниваются по центру контейнера.",
+            "uk":"<code>center</code>: Елементи буде вирівняно по центру контейнера."
+          },
+          {
+            "en_us":"<code>space-between</code>: Items display with equal spacing between them.",
+            "es_es":"<code>space-between</code>: Muestra elementos con la misma distancia entre ellos.",
+            "ru":"<code>space-between</code>: Элементы отображаются с одинаковыми отступами между ними.",
+            "uk":"<code>space-between</code>: Елементи буде зображено з рівними відступами поміж них."
+          },
+          {
+            "en_us":"<code>space-around</code>: Items display with equal spacing around them.",
+            "es_es":"<code>space-around</code>: Muestra elementos con la misma separación alrededor de ellos.",
+            "ru":"<code>space-around</code>: Элементы отображаются с одинаковыми отступами вокруг них.",
+            "uk":"<code>space-around</code>: Елементи буде зображено з рівними відступами навколо них."
+          }
+        ],
+        "example":{
+          "en_us":"For example, <code>justify-content: flex-end;</code> will move the frog to the right.",
+          "es_es":"Por ejemplo, <code>justify-content: flex-end;</code> moverá la rana a la derecha.",
+          "ru":"Например, <code>justify-content: flex-end;</code> сдвинет лягушонка вправо.",
+          "uk":"Наприклад, <code>justify-content: flex-end;</code> пересуне жабеня праворуч."
+        }
+      },
+      "submitText":{
+        "en_us":"Next Level",
+        "es_es":"Siguiente Nivel",
+        "ru":"Следующий Уровень",
+        "uk":"Наступний Рівень"
+      }
+    },
+    {
+      "levelNumber": 7,
+      "game": "flexbox",
+      "winCondition":"justify-content: flex-end",
+      "name":{
+        "en_us":"Distributing Space Inside a Flex Container",
+        "es_es":"Distribución del espacio en Flex Сontenedor",
+        "ru":"Распределение пространства в Flex контейнере",
+        "uk":"Розподіл простору в Flex контейнеру"
+      },
+      "description":{
+        "paragraph":{
+          "en_us":"Welcome to Flexbox Froggy, a game where you help Froggy and friends by writing CSS code! Guide this frog to the lilypad on the right by using the <code>justify-content</code> property, which aligns items horizontally and accepts the following values:",
+          "es_es":"Bienvenido a Flexbox Froggy, un juego donde ayudarás a Froggy y a sus amigos escribiendo código CSS. Guía a esta rana hacia la hoja de lirio en la derecha, usando la propiedad <code>justify-content</code>, la cual alinea elementos horizontalmente y acepta los siguientes valores:",
+          "ru":"Добро пожаловать в Flexbox Froggy. Игра, в которой тебе нужно помочь лягушонку Фроги и его друзьям, написав CSS код! Направь этого лягушонка на лилию справа, используя свойство <code>justify-content</code>, которое выравнивает элементы горизонтально и принимает следующие значения:",
+          "uk":"Вітаємо у Flexbox Froggy - гра, де ви маєте допомогати жабеняті Фрогі та його друзям написанням CSS коду! Всади жабеня на лист латаття праворуч, за допомогою властивості <code>justify-content</code>, яка вирівнює елементи по горизонталі й набуває таких значень:"
+        },
+        "rulesList":[
+          {
+            "en_us":"<code>flex-start</code>: Items align to the left side of the container.",
+            "es_es":"<code>flex-start</code>: Alinea elementos al lado izquierdo del contenedor.",
+            "ru":"<code>flex-start</code>: Элементы выравниваются по левой стороне контейнера.",
+            "uk":"<code>flex-start</code>: Елементи буде вирівняно по лівій стороні контейнера."
+          },
+          {
+            "en_us":"<code>flex-end</code>: Items align to the right side of the container.",
+            "es_es":"<code>flex-end</code>: Alinea elementos al lado derecho del contenedor.",
+            "ru":"<code>flex-end</code>: Элементы выравниваются по правой стороне контейнера.",
+            "uk":"<code>flex-end</code>: Елементи буде вирівняно по правій стороні контейнера."
+          },
+          {
+            "en_us":"<code>center</code>: Items align at the center of the container.",
+            "es_es":"<code>center</code>: Alinea elementos en el centro del contenedor.",
+            "ru":"<code>center</code>: Элементы выравниваются по центру контейнера.",
+            "uk":"<code>center</code>: Елементи буде вирівняно по центру контейнера."
+          },
+          {
+            "en_us":"<code>space-between</code>: Items display with equal spacing between them.",
+            "es_es":"<code>space-between</code>: Muestra elementos con la misma distancia entre ellos.",
+            "ru":"<code>space-between</code>: Элементы отображаются с одинаковыми отступами между ними.",
+            "uk":"<code>space-between</code>: Елементи буде зображено з рівними відступами поміж них."
+          },
+          {
+            "en_us":"<code>space-around</code>: Items display with equal spacing around them.",
+            "es_es":"<code>space-around</code>: Muestra elementos con la misma separación alrededor de ellos.",
+            "ru":"<code>space-around</code>: Элементы отображаются с одинаковыми отступами вокруг них.",
+            "uk":"<code>space-around</code>: Елементи буде зображено з рівними відступами навколо них."
+          }
+        ],
+        "example":{
+          "en_us":"For example, <code>justify-content: flex-end;</code> will move the frog to the right.",
+          "es_es":"Por ejemplo, <code>justify-content: flex-end;</code> moverá la rana a la derecha.",
+          "ru":"Например, <code>justify-content: flex-end;</code> сдвинет лягушонка вправо.",
+          "uk":"Наприклад, <code>justify-content: flex-end;</code> пересуне жабеня праворуч."
+        }
+      },
+      "submitText":{
+        "en_us":"Next Level",
+        "es_es":"Siguiente Nivel",
+        "ru":"Следующий Уровень",
+        "uk":"Наступний Рівень"
+      }
+    },
+    {
+      "levelNumber": 8,
+      "game": "flexbox",
+      "winCondition":"justify-content: flex-end",
+      "name":{
+        "en_us":"Distributing Space Inside a Flex Container",
+        "es_es":"Distribución del espacio en Flex Сontenedor",
+        "ru":"Распределение пространства в Flex контейнере",
+        "uk":"Розподіл простору в Flex контейнеру"
+      },
+      "description":{
+        "paragraph":{
+          "en_us":"Welcome to Flexbox Froggy, a game where you help Froggy and friends by writing CSS code! Guide this frog to the lilypad on the right by using the <code>justify-content</code> property, which aligns items horizontally and accepts the following values:",
+          "es_es":"Bienvenido a Flexbox Froggy, un juego donde ayudarás a Froggy y a sus amigos escribiendo código CSS. Guía a esta rana hacia la hoja de lirio en la derecha, usando la propiedad <code>justify-content</code>, la cual alinea elementos horizontalmente y acepta los siguientes valores:",
+          "ru":"Добро пожаловать в Flexbox Froggy. Игра, в которой тебе нужно помочь лягушонку Фроги и его друзьям, написав CSS код! Направь этого лягушонка на лилию справа, используя свойство <code>justify-content</code>, которое выравнивает элементы горизонтально и принимает следующие значения:",
+          "uk":"Вітаємо у Flexbox Froggy - гра, де ви маєте допомогати жабеняті Фрогі та його друзям написанням CSS коду! Всади жабеня на лист латаття праворуч, за допомогою властивості <code>justify-content</code>, яка вирівнює елементи по горизонталі й набуває таких значень:"
+        },
+        "rulesList":[
+          {
+            "en_us":"<code>flex-start</code>: Items align to the left side of the container.",
+            "es_es":"<code>flex-start</code>: Alinea elementos al lado izquierdo del contenedor.",
+            "ru":"<code>flex-start</code>: Элементы выравниваются по левой стороне контейнера.",
+            "uk":"<code>flex-start</code>: Елементи буде вирівняно по лівій стороні контейнера."
+          },
+          {
+            "en_us":"<code>flex-end</code>: Items align to the right side of the container.",
+            "es_es":"<code>flex-end</code>: Alinea elementos al lado derecho del contenedor.",
+            "ru":"<code>flex-end</code>: Элементы выравниваются по правой стороне контейнера.",
+            "uk":"<code>flex-end</code>: Елементи буде вирівняно по правій стороні контейнера."
+          },
+          {
+            "en_us":"<code>center</code>: Items align at the center of the container.",
+            "es_es":"<code>center</code>: Alinea elementos en el centro del contenedor.",
+            "ru":"<code>center</code>: Элементы выравниваются по центру контейнера.",
+            "uk":"<code>center</code>: Елементи буде вирівняно по центру контейнера."
+          },
+          {
+            "en_us":"<code>space-between</code>: Items display with equal spacing between them.",
+            "es_es":"<code>space-between</code>: Muestra elementos con la misma distancia entre ellos.",
+            "ru":"<code>space-between</code>: Элементы отображаются с одинаковыми отступами между ними.",
+            "uk":"<code>space-between</code>: Елементи буде зображено з рівними відступами поміж них."
+          },
+          {
+            "en_us":"<code>space-around</code>: Items display with equal spacing around them.",
+            "es_es":"<code>space-around</code>: Muestra elementos con la misma separación alrededor de ellos.",
+            "ru":"<code>space-around</code>: Элементы отображаются с одинаковыми отступами вокруг них.",
+            "uk":"<code>space-around</code>: Елементи буде зображено з рівними відступами навколо них."
+          }
+        ],
+        "example":{
+          "en_us":"For example, <code>justify-content: flex-end;</code> will move the frog to the right.",
+          "es_es":"Por ejemplo, <code>justify-content: flex-end;</code> moverá la rana a la derecha.",
+          "ru":"Например, <code>justify-content: flex-end;</code> сдвинет лягушонка вправо.",
+          "uk":"Наприклад, <code>justify-content: flex-end;</code> пересуне жабеня праворуч."
+        }
+      },
+      "submitText":{
+        "en_us":"Next Level",
+        "es_es":"Siguiente Nivel",
+        "ru":"Следующий Уровень",
+        "uk":"Наступний Рівень"
+      }
+    },
+    {
+      "levelNumber": 9,
+      "game": "flexbox",
+      "winCondition":"justify-content: flex-end",
+      "name":{
+        "en_us":"Distributing Space Inside a Flex Container",
+        "es_es":"Distribución del espacio en Flex Сontenedor",
+        "ru":"Распределение пространства в Flex контейнере",
+        "uk":"Розподіл простору в Flex контейнеру"
+      },
+      "description":{
+        "paragraph":{
+          "en_us":"Welcome to Flexbox Froggy, a game where you help Froggy and friends by writing CSS code! Guide this frog to the lilypad on the right by using the <code>justify-content</code> property, which aligns items horizontally and accepts the following values:",
+          "es_es":"Bienvenido a Flexbox Froggy, un juego donde ayudarás a Froggy y a sus amigos escribiendo código CSS. Guía a esta rana hacia la hoja de lirio en la derecha, usando la propiedad <code>justify-content</code>, la cual alinea elementos horizontalmente y acepta los siguientes valores:",
+          "ru":"Добро пожаловать в Flexbox Froggy. Игра, в которой тебе нужно помочь лягушонку Фроги и его друзьям, написав CSS код! Направь этого лягушонка на лилию справа, используя свойство <code>justify-content</code>, которое выравнивает элементы горизонтально и принимает следующие значения:",
+          "uk":"Вітаємо у Flexbox Froggy - гра, де ви маєте допомогати жабеняті Фрогі та його друзям написанням CSS коду! Всади жабеня на лист латаття праворуч, за допомогою властивості <code>justify-content</code>, яка вирівнює елементи по горизонталі й набуває таких значень:"
+        },
+        "rulesList":[
+          {
+            "en_us":"<code>flex-start</code>: Items align to the left side of the container.",
+            "es_es":"<code>flex-start</code>: Alinea elementos al lado izquierdo del contenedor.",
+            "ru":"<code>flex-start</code>: Элементы выравниваются по левой стороне контейнера.",
+            "uk":"<code>flex-start</code>: Елементи буде вирівняно по лівій стороні контейнера."
+          },
+          {
+            "en_us":"<code>flex-end</code>: Items align to the right side of the container.",
+            "es_es":"<code>flex-end</code>: Alinea elementos al lado derecho del contenedor.",
+            "ru":"<code>flex-end</code>: Элементы выравниваются по правой стороне контейнера.",
+            "uk":"<code>flex-end</code>: Елементи буде вирівняно по правій стороні контейнера."
+          },
+          {
+            "en_us":"<code>center</code>: Items align at the center of the container.",
+            "es_es":"<code>center</code>: Alinea elementos en el centro del contenedor.",
+            "ru":"<code>center</code>: Элементы выравниваются по центру контейнера.",
+            "uk":"<code>center</code>: Елементи буде вирівняно по центру контейнера."
+          },
+          {
+            "en_us":"<code>space-between</code>: Items display with equal spacing between them.",
+            "es_es":"<code>space-between</code>: Muestra elementos con la misma distancia entre ellos.",
+            "ru":"<code>space-between</code>: Элементы отображаются с одинаковыми отступами между ними.",
+            "uk":"<code>space-between</code>: Елементи буде зображено з рівними відступами поміж них."
+          },
+          {
+            "en_us":"<code>space-around</code>: Items display with equal spacing around them.",
+            "es_es":"<code>space-around</code>: Muestra elementos con la misma separación alrededor de ellos.",
+            "ru":"<code>space-around</code>: Элементы отображаются с одинаковыми отступами вокруг них.",
+            "uk":"<code>space-around</code>: Елементи буде зображено з рівними відступами навколо них."
+          }
+        ],
+        "example":{
+          "en_us":"For example, <code>justify-content: flex-end;</code> will move the frog to the right.",
+          "es_es":"Por ejemplo, <code>justify-content: flex-end;</code> moverá la rana a la derecha.",
+          "ru":"Например, <code>justify-content: flex-end;</code> сдвинет лягушонка вправо.",
+          "uk":"Наприклад, <code>justify-content: flex-end;</code> пересуне жабеня праворуч."
+        }
+      },
+      "submitText":{
+        "en_us":"Next Level",
+        "es_es":"Siguiente Nivel",
+        "ru":"Следующий Уровень",
+        "uk":"Наступний Рівень"
+      }
+    },
+    {
+      "levelNumber": 10,
+      "game": "flexbox",
+      "winCondition":"justify-content: flex-end",
+      "name":{
+        "en_us":"Distributing Space Inside a Flex Container",
+        "es_es":"Distribución del espacio en Flex Сontenedor",
+        "ru":"Распределение пространства в Flex контейнере",
+        "uk":"Розподіл простору в Flex контейнеру"
+      },
+      "description":{
+        "paragraph":{
+          "en_us":"Welcome to Flexbox Froggy, a game where you help Froggy and friends by writing CSS code! Guide this frog to the lilypad on the right by using the <code>justify-content</code> property, which aligns items horizontally and accepts the following values:",
+          "es_es":"Bienvenido a Flexbox Froggy, un juego donde ayudarás a Froggy y a sus amigos escribiendo código CSS. Guía a esta rana hacia la hoja de lirio en la derecha, usando la propiedad <code>justify-content</code>, la cual alinea elementos horizontalmente y acepta los siguientes valores:",
+          "ru":"Добро пожаловать в Flexbox Froggy. Игра, в которой тебе нужно помочь лягушонку Фроги и его друзьям, написав CSS код! Направь этого лягушонка на лилию справа, используя свойство <code>justify-content</code>, которое выравнивает элементы горизонтально и принимает следующие значения:",
+          "uk":"Вітаємо у Flexbox Froggy - гра, де ви маєте допомогати жабеняті Фрогі та його друзям написанням CSS коду! Всади жабеня на лист латаття праворуч, за допомогою властивості <code>justify-content</code>, яка вирівнює елементи по горизонталі й набуває таких значень:"
+        },
+        "rulesList":[
+          {
+            "en_us":"<code>flex-start</code>: Items align to the left side of the container.",
+            "es_es":"<code>flex-start</code>: Alinea elementos al lado izquierdo del contenedor.",
+            "ru":"<code>flex-start</code>: Элементы выравниваются по левой стороне контейнера.",
+            "uk":"<code>flex-start</code>: Елементи буде вирівняно по лівій стороні контейнера."
+          },
+          {
+            "en_us":"<code>flex-end</code>: Items align to the right side of the container.",
+            "es_es":"<code>flex-end</code>: Alinea elementos al lado derecho del contenedor.",
+            "ru":"<code>flex-end</code>: Элементы выравниваются по правой стороне контейнера.",
+            "uk":"<code>flex-end</code>: Елементи буде вирівняно по правій стороні контейнера."
+          },
+          {
+            "en_us":"<code>center</code>: Items align at the center of the container.",
+            "es_es":"<code>center</code>: Alinea elementos en el centro del contenedor.",
+            "ru":"<code>center</code>: Элементы выравниваются по центру контейнера.",
+            "uk":"<code>center</code>: Елементи буде вирівняно по центру контейнера."
+          },
+          {
+            "en_us":"<code>space-between</code>: Items display with equal spacing between them.",
+            "es_es":"<code>space-between</code>: Muestra elementos con la misma distancia entre ellos.",
+            "ru":"<code>space-between</code>: Элементы отображаются с одинаковыми отступами между ними.",
+            "uk":"<code>space-between</code>: Елементи буде зображено з рівними відступами поміж них."
+          },
+          {
+            "en_us":"<code>space-around</code>: Items display with equal spacing around them.",
+            "es_es":"<code>space-around</code>: Muestra elementos con la misma separación alrededor de ellos.",
+            "ru":"<code>space-around</code>: Элементы отображаются с одинаковыми отступами вокруг них.",
+            "uk":"<code>space-around</code>: Елементи буде зображено з рівними відступами навколо них."
+          }
+        ],
+        "example":{
+          "en_us":"For example, <code>justify-content: flex-end;</code> will move the frog to the right.",
+          "es_es":"Por ejemplo, <code>justify-content: flex-end;</code> moverá la rana a la derecha.",
+          "ru":"Например, <code>justify-content: flex-end;</code> сдвинет лягушонка вправо.",
+          "uk":"Наприклад, <code>justify-content: flex-end;</code> пересуне жабеня праворуч."
+        }
+      },
+      "submitText":{
+        "en_us":"Next Level",
+        "es_es":"Siguiente Nivel",
+        "ru":"Следующий Уровень",
+        "uk":"Наступний Рівень"
+      }
+    },
+    {
+      "levelNumber": 11,
+      "game": "flexbox",
+      "winCondition":"justify-content: flex-end",
+      "name":{
+        "en_us":"Distributing Space Inside a Flex Container",
+        "es_es":"Distribución del espacio en Flex Сontenedor",
+        "ru":"Распределение пространства в Flex контейнере",
+        "uk":"Розподіл простору в Flex контейнеру"
+      },
+      "description":{
+        "paragraph":{
+          "en_us":"Welcome to Flexbox Froggy, a game where you help Froggy and friends by writing CSS code! Guide this frog to the lilypad on the right by using the <code>justify-content</code> property, which aligns items horizontally and accepts the following values:",
+          "es_es":"Bienvenido a Flexbox Froggy, un juego donde ayudarás a Froggy y a sus amigos escribiendo código CSS. Guía a esta rana hacia la hoja de lirio en la derecha, usando la propiedad <code>justify-content</code>, la cual alinea elementos horizontalmente y acepta los siguientes valores:",
+          "ru":"Добро пожаловать в Flexbox Froggy. Игра, в которой тебе нужно помочь лягушонку Фроги и его друзьям, написав CSS код! Направь этого лягушонка на лилию справа, используя свойство <code>justify-content</code>, которое выравнивает элементы горизонтально и принимает следующие значения:",
+          "uk":"Вітаємо у Flexbox Froggy - гра, де ви маєте допомогати жабеняті Фрогі та його друзям написанням CSS коду! Всади жабеня на лист латаття праворуч, за допомогою властивості <code>justify-content</code>, яка вирівнює елементи по горизонталі й набуває таких значень:"
+        },
+        "rulesList":[
+          {
+            "en_us":"<code>flex-start</code>: Items align to the left side of the container.",
+            "es_es":"<code>flex-start</code>: Alinea elementos al lado izquierdo del contenedor.",
+            "ru":"<code>flex-start</code>: Элементы выравниваются по левой стороне контейнера.",
+            "uk":"<code>flex-start</code>: Елементи буде вирівняно по лівій стороні контейнера."
+          },
+          {
+            "en_us":"<code>flex-end</code>: Items align to the right side of the container.",
+            "es_es":"<code>flex-end</code>: Alinea elementos al lado derecho del contenedor.",
+            "ru":"<code>flex-end</code>: Элементы выравниваются по правой стороне контейнера.",
+            "uk":"<code>flex-end</code>: Елементи буде вирівняно по правій стороні контейнера."
+          },
+          {
+            "en_us":"<code>center</code>: Items align at the center of the container.",
+            "es_es":"<code>center</code>: Alinea elementos en el centro del contenedor.",
+            "ru":"<code>center</code>: Элементы выравниваются по центру контейнера.",
+            "uk":"<code>center</code>: Елементи буде вирівняно по центру контейнера."
+          },
+          {
+            "en_us":"<code>space-between</code>: Items display with equal spacing between them.",
+            "es_es":"<code>space-between</code>: Muestra elementos con la misma distancia entre ellos.",
+            "ru":"<code>space-between</code>: Элементы отображаются с одинаковыми отступами между ними.",
+            "uk":"<code>space-between</code>: Елементи буде зображено з рівними відступами поміж них."
+          },
+          {
+            "en_us":"<code>space-around</code>: Items display with equal spacing around them.",
+            "es_es":"<code>space-around</code>: Muestra elementos con la misma separación alrededor de ellos.",
+            "ru":"<code>space-around</code>: Элементы отображаются с одинаковыми отступами вокруг них.",
+            "uk":"<code>space-around</code>: Елементи буде зображено з рівними відступами навколо них."
+          }
+        ],
+        "example":{
+          "en_us":"For example, <code>justify-content: flex-end;</code> will move the frog to the right.",
+          "es_es":"Por ejemplo, <code>justify-content: flex-end;</code> moverá la rana a la derecha.",
+          "ru":"Например, <code>justify-content: flex-end;</code> сдвинет лягушонка вправо.",
+          "uk":"Наприклад, <code>justify-content: flex-end;</code> пересуне жабеня праворуч."
+        }
+      },
+      "submitText":{
+        "en_us":"Next Level",
+        "es_es":"Siguiente Nivel",
+        "ru":"Следующий Уровень",
+        "uk":"Наступний Рівень"
+      }
+    },
+    {
+      "levelNumber": 12,
+      "game": "flexbox",
+      "winCondition":"justify-content: flex-end",
+      "name":{
+        "en_us":"Distributing Space Inside a Flex Container",
+        "es_es":"Distribución del espacio en Flex Сontenedor",
+        "ru":"Распределение пространства в Flex контейнере",
+        "uk":"Розподіл простору в Flex контейнеру"
+      },
+      "description":{
+        "paragraph":{
+          "en_us":"Welcome to Flexbox Froggy, a game where you help Froggy and friends by writing CSS code! Guide this frog to the lilypad on the right by using the <code>justify-content</code> property, which aligns items horizontally and accepts the following values:",
+          "es_es":"Bienvenido a Flexbox Froggy, un juego donde ayudarás a Froggy y a sus amigos escribiendo código CSS. Guía a esta rana hacia la hoja de lirio en la derecha, usando la propiedad <code>justify-content</code>, la cual alinea elementos horizontalmente y acepta los siguientes valores:",
+          "ru":"Добро пожаловать в Flexbox Froggy. Игра, в которой тебе нужно помочь лягушонку Фроги и его друзьям, написав CSS код! Направь этого лягушонка на лилию справа, используя свойство <code>justify-content</code>, которое выравнивает элементы горизонтально и принимает следующие значения:",
+          "uk":"Вітаємо у Flexbox Froggy - гра, де ви маєте допомогати жабеняті Фрогі та його друзям написанням CSS коду! Всади жабеня на лист латаття праворуч, за допомогою властивості <code>justify-content</code>, яка вирівнює елементи по горизонталі й набуває таких значень:"
+        },
+        "rulesList":[
+          {
+            "en_us":"<code>flex-start</code>: Items align to the left side of the container.",
+            "es_es":"<code>flex-start</code>: Alinea elementos al lado izquierdo del contenedor.",
+            "ru":"<code>flex-start</code>: Элементы выравниваются по левой стороне контейнера.",
+            "uk":"<code>flex-start</code>: Елементи буде вирівняно по лівій стороні контейнера."
+          },
+          {
+            "en_us":"<code>flex-end</code>: Items align to the right side of the container.",
+            "es_es":"<code>flex-end</code>: Alinea elementos al lado derecho del contenedor.",
+            "ru":"<code>flex-end</code>: Элементы выравниваются по правой стороне контейнера.",
+            "uk":"<code>flex-end</code>: Елементи буде вирівняно по правій стороні контейнера."
+          },
+          {
+            "en_us":"<code>center</code>: Items align at the center of the container.",
+            "es_es":"<code>center</code>: Alinea elementos en el centro del contenedor.",
+            "ru":"<code>center</code>: Элементы выравниваются по центру контейнера.",
+            "uk":"<code>center</code>: Елементи буде вирівняно по центру контейнера."
+          },
+          {
+            "en_us":"<code>space-between</code>: Items display with equal spacing between them.",
+            "es_es":"<code>space-between</code>: Muestra elementos con la misma distancia entre ellos.",
+            "ru":"<code>space-between</code>: Элементы отображаются с одинаковыми отступами между ними.",
+            "uk":"<code>space-between</code>: Елементи буде зображено з рівними відступами поміж них."
+          },
+          {
+            "en_us":"<code>space-around</code>: Items display with equal spacing around them.",
+            "es_es":"<code>space-around</code>: Muestra elementos con la misma separación alrededor de ellos.",
+            "ru":"<code>space-around</code>: Элементы отображаются с одинаковыми отступами вокруг них.",
+            "uk":"<code>space-around</code>: Елементи буде зображено з рівними відступами навколо них."
+          }
+        ],
+        "example":{
+          "en_us":"For example, <code>justify-content: flex-end;</code> will move the frog to the right.",
+          "es_es":"Por ejemplo, <code>justify-content: flex-end;</code> moverá la rana a la derecha.",
+          "ru":"Например, <code>justify-content: flex-end;</code> сдвинет лягушонка вправо.",
+          "uk":"Наприклад, <code>justify-content: flex-end;</code> пересуне жабеня праворуч."
+        }
+      },
+      "submitText":{
+        "en_us":"Next Level",
+        "es_es":"Siguiente Nivel",
+        "ru":"Следующий Уровень",
+        "uk":"Наступний Рівень"
+      }
+    },
+    {
+      "levelNumber": 13,
+      "game": "flexbox",
+      "winCondition":"justify-content: flex-end",
+      "name":{
+        "en_us":"Distributing Space Inside a Flex Container",
+        "es_es":"Distribución del espacio en Flex Сontenedor",
+        "ru":"Распределение пространства в Flex контейнере",
+        "uk":"Розподіл простору в Flex контейнеру"
+      },
+      "description":{
+        "paragraph":{
+          "en_us":"Welcome to Flexbox Froggy, a game where you help Froggy and friends by writing CSS code! Guide this frog to the lilypad on the right by using the <code>justify-content</code> property, which aligns items horizontally and accepts the following values:",
+          "es_es":"Bienvenido a Flexbox Froggy, un juego donde ayudarás a Froggy y a sus amigos escribiendo código CSS. Guía a esta rana hacia la hoja de lirio en la derecha, usando la propiedad <code>justify-content</code>, la cual alinea elementos horizontalmente y acepta los siguientes valores:",
+          "ru":"Добро пожаловать в Flexbox Froggy. Игра, в которой тебе нужно помочь лягушонку Фроги и его друзьям, написав CSS код! Направь этого лягушонка на лилию справа, используя свойство <code>justify-content</code>, которое выравнивает элементы горизонтально и принимает следующие значения:",
+          "uk":"Вітаємо у Flexbox Froggy - гра, де ви маєте допомогати жабеняті Фрогі та його друзям написанням CSS коду! Всади жабеня на лист латаття праворуч, за допомогою властивості <code>justify-content</code>, яка вирівнює елементи по горизонталі й набуває таких значень:"
+        },
+        "rulesList":[
+          {
+            "en_us":"<code>flex-start</code>: Items align to the left side of the container.",
+            "es_es":"<code>flex-start</code>: Alinea elementos al lado izquierdo del contenedor.",
+            "ru":"<code>flex-start</code>: Элементы выравниваются по левой стороне контейнера.",
+            "uk":"<code>flex-start</code>: Елементи буде вирівняно по лівій стороні контейнера."
+          },
+          {
+            "en_us":"<code>flex-end</code>: Items align to the right side of the container.",
+            "es_es":"<code>flex-end</code>: Alinea elementos al lado derecho del contenedor.",
+            "ru":"<code>flex-end</code>: Элементы выравниваются по правой стороне контейнера.",
+            "uk":"<code>flex-end</code>: Елементи буде вирівняно по правій стороні контейнера."
+          },
+          {
+            "en_us":"<code>center</code>: Items align at the center of the container.",
+            "es_es":"<code>center</code>: Alinea elementos en el centro del contenedor.",
+            "ru":"<code>center</code>: Элементы выравниваются по центру контейнера.",
+            "uk":"<code>center</code>: Елементи буде вирівняно по центру контейнера."
+          },
+          {
+            "en_us":"<code>space-between</code>: Items display with equal spacing between them.",
+            "es_es":"<code>space-between</code>: Muestra elementos con la misma distancia entre ellos.",
+            "ru":"<code>space-between</code>: Элементы отображаются с одинаковыми отступами между ними.",
+            "uk":"<code>space-between</code>: Елементи буде зображено з рівними відступами поміж них."
+          },
+          {
+            "en_us":"<code>space-around</code>: Items display with equal spacing around them.",
+            "es_es":"<code>space-around</code>: Muestra elementos con la misma separación alrededor de ellos.",
+            "ru":"<code>space-around</code>: Элементы отображаются с одинаковыми отступами вокруг них.",
+            "uk":"<code>space-around</code>: Елементи буде зображено з рівними відступами навколо них."
+          }
+        ],
+        "example":{
+          "en_us":"For example, <code>justify-content: flex-end;</code> will move the frog to the right.",
+          "es_es":"Por ejemplo, <code>justify-content: flex-end;</code> moverá la rana a la derecha.",
+          "ru":"Например, <code>justify-content: flex-end;</code> сдвинет лягушонка вправо.",
+          "uk":"Наприклад, <code>justify-content: flex-end;</code> пересуне жабеня праворуч."
+        }
+      },
+      "submitText":{
+        "en_us":"Next Level",
+        "es_es":"Siguiente Nivel",
+        "ru":"Следующий Уровень",
+        "uk":"Наступний Рівень"
+      }
+    },
+    {
+      "levelNumber": 14,
+      "game": "flexbox",
+      "winCondition":"justify-content: flex-end",
+      "name":{
+        "en_us":"Distributing Space Inside a Flex Container",
+        "es_es":"Distribución del espacio en Flex Сontenedor",
+        "ru":"Распределение пространства в Flex контейнере",
+        "uk":"Розподіл простору в Flex контейнеру"
+      },
+      "description":{
+        "paragraph":{
+          "en_us":"Welcome to Flexbox Froggy, a game where you help Froggy and friends by writing CSS code! Guide this frog to the lilypad on the right by using the <code>justify-content</code> property, which aligns items horizontally and accepts the following values:",
+          "es_es":"Bienvenido a Flexbox Froggy, un juego donde ayudarás a Froggy y a sus amigos escribiendo código CSS. Guía a esta rana hacia la hoja de lirio en la derecha, usando la propiedad <code>justify-content</code>, la cual alinea elementos horizontalmente y acepta los siguientes valores:",
+          "ru":"Добро пожаловать в Flexbox Froggy. Игра, в которой тебе нужно помочь лягушонку Фроги и его друзьям, написав CSS код! Направь этого лягушонка на лилию справа, используя свойство <code>justify-content</code>, которое выравнивает элементы горизонтально и принимает следующие значения:",
+          "uk":"Вітаємо у Flexbox Froggy - гра, де ви маєте допомогати жабеняті Фрогі та його друзям написанням CSS коду! Всади жабеня на лист латаття праворуч, за допомогою властивості <code>justify-content</code>, яка вирівнює елементи по горизонталі й набуває таких значень:"
+        },
+        "rulesList":[
+          {
+            "en_us":"<code>flex-start</code>: Items align to the left side of the container.",
+            "es_es":"<code>flex-start</code>: Alinea elementos al lado izquierdo del contenedor.",
+            "ru":"<code>flex-start</code>: Элементы выравниваются по левой стороне контейнера.",
+            "uk":"<code>flex-start</code>: Елементи буде вирівняно по лівій стороні контейнера."
+          },
+          {
+            "en_us":"<code>flex-end</code>: Items align to the right side of the container.",
+            "es_es":"<code>flex-end</code>: Alinea elementos al lado derecho del contenedor.",
+            "ru":"<code>flex-end</code>: Элементы выравниваются по правой стороне контейнера.",
+            "uk":"<code>flex-end</code>: Елементи буде вирівняно по правій стороні контейнера."
+          },
+          {
+            "en_us":"<code>center</code>: Items align at the center of the container.",
+            "es_es":"<code>center</code>: Alinea elementos en el centro del contenedor.",
+            "ru":"<code>center</code>: Элементы выравниваются по центру контейнера.",
+            "uk":"<code>center</code>: Елементи буде вирівняно по центру контейнера."
+          },
+          {
+            "en_us":"<code>space-between</code>: Items display with equal spacing between them.",
+            "es_es":"<code>space-between</code>: Muestra elementos con la misma distancia entre ellos.",
+            "ru":"<code>space-between</code>: Элементы отображаются с одинаковыми отступами между ними.",
+            "uk":"<code>space-between</code>: Елементи буде зображено з рівними відступами поміж них."
+          },
+          {
+            "en_us":"<code>space-around</code>: Items display with equal spacing around them.",
+            "es_es":"<code>space-around</code>: Muestra elementos con la misma separación alrededor de ellos.",
+            "ru":"<code>space-around</code>: Элементы отображаются с одинаковыми отступами вокруг них.",
+            "uk":"<code>space-around</code>: Елементи буде зображено з рівними відступами навколо них."
+          }
+        ],
+        "example":{
+          "en_us":"For example, <code>justify-content: flex-end;</code> will move the frog to the right.",
+          "es_es":"Por ejemplo, <code>justify-content: flex-end;</code> moverá la rana a la derecha.",
+          "ru":"Например, <code>justify-content: flex-end;</code> сдвинет лягушонка вправо.",
+          "uk":"Наприклад, <code>justify-content: flex-end;</code> пересуне жабеня праворуч."
+        }
+      },
+      "submitText":{
+        "en_us":"Next Level",
+        "es_es":"Siguiente Nivel",
+        "ru":"Следующий Уровень",
+        "uk":"Наступний Рівень"
+      }
+    }
+]

@@ -2,87 +2,70 @@ import mongoose, { Schema } from "mongoose";
 
 type games = "flexbox";
 
+type LevelDataI18N = {
+  en_us: string;
+  es_es: string;
+  ru: string;
+  uk: string;
+};
+
 export interface LevelData {
   levelNumber: number;
   game: games;
   winCondition: string;
-  name: {
-    en_us: string;
-    es_es: string;
-    ru: string;
-    uk: string;
-  };
+  name: LevelDataI18N;
   description: {
-    en_us: string;
-    es_es: string;
-    ru: string;
-    uk: string;
+    paragraph: LevelDataI18N;
+    rulesList: Array<LevelDataI18N>;
+    example: LevelDataI18N;
   };
-  submitText: {
-    en_us: string;
-    es_es: string;
-    ru: string;
-    uk: string;
-  };
+  submitText: LevelDataI18N;
 }
+
+const LevelDataI18NSchema = new Schema<LevelDataI18N>({
+  en_us: {
+    type: String,
+    required: true,
+  },
+  es_es: {
+    type: String,
+    required: true,
+  },
+  ru: {
+    type: String,
+    required: true,
+  },
+  uk: {
+    type: String,
+    required: true,
+  },
+});
 
 const LevelDataSchema = new Schema<LevelData>({
   levelNumber: { type: Number, required: true },
   game: { type: String, required: true },
   winCondition: { type: String, required: true },
   name: {
-    en_us: {
-      type: String,
-      required: true,
-    },
-    es_es: {
-      type: String,
-      required: true,
-    },
-    ru: {
-      type: String,
-      required: true,
-    },
-    uk: {
-      type: String,
-      required: true,
-    },
+    type: LevelDataI18NSchema,
+    required: true,
   },
   description: {
-    en_us: {
-      type: String,
+    paragraph: {
+      type: LevelDataI18NSchema,
       required: true,
     },
-    es_es: {
-      type: String,
+    rulesList: {
+      type: [LevelDataI18NSchema],
       required: true,
     },
-    ru: {
-      type: String,
-      required: true,
-    },
-    uk: {
-      type: String,
+    example: {
+      type: LevelDataI18NSchema,
       required: true,
     },
   },
   submitText: {
-    en_us: {
-      type: String,
-      required: true,
-    },
-    es_es: {
-      type: String,
-      required: true,
-    },
-    ru: {
-      type: String,
-      required: true,
-    },
-    uk: {
-      type: String,
-      required: true,
-    },
+    type: LevelDataI18NSchema,
+    required: true,
   },
 });
 
