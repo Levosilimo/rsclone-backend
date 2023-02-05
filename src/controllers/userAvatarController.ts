@@ -65,6 +65,7 @@ export async function getAvatar(
     if (!user)
       return res.status(404).send('User with this "username" not found');
     if (!user.avatarId) {
+      res.setHeader("content-type", "image/png");
       bucket.openDownloadStream(DEFAULT_AVATARID).pipe(res);
       return;
     }

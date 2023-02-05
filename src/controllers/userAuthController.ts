@@ -40,7 +40,12 @@ export async function loginUser(
           expiresIn: process.env.TOKEN_LIFETIME,
         }
       );
-      res.status(200).json(token);
+      const responseBody: LoginResponseBody = {
+        username: user.username,
+        email: user.email,
+        token,
+      };
+      res.status(200).json(responseBody);
     } else {
       res
         .status(404)
@@ -55,6 +60,12 @@ export async function loginUser(
 
 const MAIL_REGEXP =
   /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+
+interface LoginResponseBody {
+  token: string;
+  username: string;
+  email: string;
+}
 
 export async function registerUser(
   req: express.Request,
@@ -94,14 +105,15 @@ export async function registerUser(
       username: username,
       _id: user._id,
     });
-    const token = jwt.sign(
+    const token: string = jwt.sign(
       { user_id: user._id, isAdmin },
       process.env.TOKEN_KEY,
       {
         expiresIn: process.env.TOKEN_LIFETIME,
       }
     );
-    res.status(201).json(token);
+    const responseBody: LoginResponseBody = { username, email, token };
+    res.status(201).json(responseBody);
   } catch (error) {
     console.error(error);
     res.status(500).send("Server error");

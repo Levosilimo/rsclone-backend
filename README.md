@@ -52,8 +52,10 @@ Creates new user with given credentials
       **Content:**
       ```json
         {
+           "username": "Lev Sylin",
+           "email": "silin.lev@gmail.com",
            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjNkM2UwN2I0MjAyZTVmNWJlMzMyZGU1IiwicGFzc3dvcmQiOiJyc2Nsb25lIiwiaWF0IjoxNjc0ODI5OTQ3LCJleHAiOjE2NzQ4NTE1NDd9.WGbXvAV02oPqZx6awbR53Lw3TSksZBWH6Ja-tT2hO58"
-         }
+        }
       ```
 
 * **Error Response:**
@@ -251,8 +253,10 @@ Validates credentials. Returns a token on success
       **Content:**
       ```json
         {
+           "username": "Lev Sylin",
+           "email": "silin.lev@gmail.com",
            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjNkM2UwN2I0MjAyZTVmNWJlMzMyZGU1IiwicGFzc3dvcmQiOiJyc2Nsb25lIiwiaWF0IjoxNjc0ODI5OTQ3LCJleHAiOjE2NzQ4NTE1NDd9.WGbXvAV02oPqZx6awbR53Lw3TSksZBWH6Ja-tT2hO58"
-         }
+        }
       ```
 
 * **Error Response:**
@@ -316,13 +320,6 @@ Checks token validity
         None
 
 * **Error Response:**
-
-    * **Code:** 403 FORBIDDEN <br />
-      **Content:**
-
-      A token is required for authentication
-
-  OR
 
     * **Code:** 401 UNAUTHORIZED <br />
       **Content:**
