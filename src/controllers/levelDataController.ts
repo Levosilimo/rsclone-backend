@@ -12,6 +12,9 @@ interface levelResponse {
     example: string;
   };
   submitText: string;
+  type1Quantity: number;
+  type2Quantity: number;
+  type3Quantity: number;
 }
 
 export async function addLevel(
@@ -62,6 +65,9 @@ export async function getLevel(
         example: level.description.example[user.language],
       },
       submitText: level.submitText[user.language],
+      type1Quantity: level.type1Quantity,
+      type2Quantity: level.type2Quantity,
+      type3Quantity: level.type3Quantity,
     };
     res.status(200).json(responseBody);
   } catch (err) {

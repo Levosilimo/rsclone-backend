@@ -20,6 +20,9 @@ export interface LevelData {
     example: LevelDataI18N;
   };
   submitText: LevelDataI18N;
+  type1Quantity: number;
+  type2Quantity: number;
+  type3Quantity: number;
 }
 
 const LevelDataI18NSchema = new Schema<LevelDataI18N>({
@@ -65,6 +68,18 @@ const LevelDataSchema = new Schema<LevelData>({
   },
   submitText: {
     type: LevelDataI18NSchema,
+    required: true,
+  },
+  type1Quantity: {
+    type: Number,
+    required: true,
+  },
+  type2Quantity: {
+    type: Number,
+    required: true,
+  },
+  type3Quantity: {
+    type: Number,
     required: true,
   },
 });

@@ -159,7 +159,7 @@ interface TokenPayload {
   isAdmin: boolean;
 }
 
-export function verifyToken(verifyAdmin: boolean) {
+export function verifyToken(verifyAdmin: boolean, autonomous: boolean) {
   return async (
     req: express.Request,
     res: express.Response,
@@ -181,6 +181,7 @@ export function verifyToken(verifyAdmin: boolean) {
     } catch {
       return res.status(401).send("Invalid Token");
     }
+    if (autonomous) return res.status(200).end();
     return next();
   };
 }

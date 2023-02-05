@@ -39,11 +39,11 @@ router.post("/register/check-email", checkEmailEligibility(true));
 router.patch(
   "/avatar",
   // We need this check to stop unauthenticated users from uploading images to the server
-  verifyToken(false),
+  verifyToken(false, false),
   upload.single("file"),
   processAvatar,
   // Body gets empty after multer processing, so we need to get the id from the token again
-  verifyToken(false),
+  verifyToken(false, false),
   updateAvatar
 );
 router.get("/avatar/:username", getAvatar);
@@ -52,28 +52,30 @@ router.get("/avatar/:username", getAvatar);
 router.patch(
   "/avatar/:username",
   // We need this check to stop unauthenticated users from uploading images to the server
-  verifyToken(true),
+  verifyToken(true, false),
   upload.single("file"),
   processAvatar,
   // Body gets empty after multer processing, so we need to get the id from the token again
-  verifyToken(true),
+  verifyToken(true, false),
   updateAvatarByUsername
 );
 
 /* User's user data handlers */
-router.patch("/user", verifyToken(false), updateUserData, getUserData);
-router.get("/user", verifyToken(false), getUserData);
+router.patch("/user", verifyToken(false, false), updateUserData, getUserData);
+router.get("/user", verifyToken(false, false), getUserData);
 
 /* Admin's user data handlers */
 router.patch(
   "/user/:username",
-  verifyToken(true),
+  verifyToken(true, false),
   updateUserDataByUsername,
   getUserDataByUsername
 );
-router.get("/user/:username", verifyToken(true), getUserDataByUsername);
+router.get("/user/:username", verifyToken(true, false), getUserDataByUsername);
 
-router.get("/records", verifyToken(false), getUsersRecords);
+router.get("/records", verifyToken(false, false), getUsersRecords);
 
-router.get("/levels/:game/:level", verifyToken(false), getLevel);
+router.get("/levels/:game/:level", verifyToken(false, false), getLevel);
 router.post("/levels", addLevel);
+
+router.get("/check-auth", verifyToken(false, true));
