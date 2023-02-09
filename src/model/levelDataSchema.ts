@@ -1,6 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-
-type games = "flexbox";
+import { games } from "../types";
 
 type LevelDataI18N = {
   en_us: string;

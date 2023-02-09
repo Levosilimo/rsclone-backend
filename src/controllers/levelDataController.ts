@@ -22,7 +22,7 @@ export async function addLevel(
   res: express.Response
 ): Promise<express.Response | void> {
   try {
-    const levelData = req.body;
+    const levelData: LevelData = req.body;
     const level: HydratedDocument<LevelData> = await LevelDataSchema.create(
       levelData
     );

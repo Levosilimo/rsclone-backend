@@ -8,9 +8,9 @@ export interface UserAuth {
 }
 
 const UserAuthSchema = new Schema<UserAuth>({
-  username: { type: String, unique: true, required: true },
-  email: { type: String, unique: true, required: true },
-  password: { type: String, required: true },
+  username: { type: String, unique: true, required: true, trim: true },
+  email: { type: String, unique: true, required: true, trim: true },
+  password: { type: String, required: true, trim: true },
   isAdmin: { type: Boolean, required: true },
 });
 

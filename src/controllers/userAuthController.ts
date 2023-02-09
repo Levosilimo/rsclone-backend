@@ -22,30 +22,37 @@ export async function loginUser(
   res: express.Response
 ): Promise<express.Response | void> {
   try {
-    const { login, password }: LoginCredentialsRequestBody = req.body;
-    if (!(login && password)) {
+    if (!("login" in req.body && "password" in req.body)) {
       return res
         .status(400)
         .send('Invalid input: "password" and "login" are required');
     }
+    const { login, password }: LoginCredentialsRequestBody = req.body;
     const user: HydratedDocument<UserAuth> =
       (await UserAuthSchema.findOne({ email: login })) ||
       (await UserAuthSchema.findOne({ username: login }));
-    const encryptedPassword: string = user.password;
-    if (user && (await bcrypt.compare(password, encryptedPassword))) {
-      const token = jwt.sign(
-        { user_id: user._id, isAdmin: user.isAdmin },
-        process.env.TOKEN_KEY,
-        {
-          expiresIn: process.env.TOKEN_LIFETIME,
-        }
-      );
-      const responseBody: LoginResponseBody = {
-        username: user.username,
-        email: user.email,
-        token,
-      };
-      res.status(200).json(responseBody);
+    if (user) {
+      const encryptedPassword: string = user.password;
+      if (await bcrypt.compare(password, encryptedPassword)) {
+        const token = jwt.sign(
+          { user_id: user._id, isAdmin: user.isAdmin },
+          process.env.TOKEN_KEY,
+          {
+            expiresIn: process.env.TOKEN_LIFETIME,
+          }
+        );
+        const responseBody: LoginResponseBody = {
+          username: user.username,
+          email: user.email,
+          token,
+        };
+        res.status(200).json(responseBody);
+      } else {
+        res
+          .status(404)
+          .send('User with this "password" and "login" was not found');
+        return;
+      }
     } else {
       res
         .status(404)

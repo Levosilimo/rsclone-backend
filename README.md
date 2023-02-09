@@ -2,6 +2,7 @@
 - [Check Username Eligibility](#check-username-eligibility)
 - [Check Email Eligibility](#check-email-eligibility)
 - [Login User](#login-user)
+- [Check Auth](#check-auth)
 - [Update Avatar](#update-avatar)
 - [Get Avatar](#get-avatar)
 - [Update User Data](#update-user-data)
@@ -504,8 +505,8 @@ Validates token. Replaces user data with the data from request's body. Returns o
 
     ```typescript
       {
-        language?: "en_us" | "es_es" | "ru" | "uk" | string;
-        levelFlexbox?: number;
+        language?: "en_us" | "es_es" | "ru" | "uk";
+        records?: Record<gameName, Array<number>>;
       }
     ```
 
@@ -515,8 +516,10 @@ Validates token. Replaces user data with the data from request's body. Returns o
       **Content:**
       ```json
         {
-           "language": "en-us",
-           "levelFlexbox": "1"
+           "language": "en_us",
+           "records": {
+              "flexbox": [1, 2]
+           }
         }
       ```
 
@@ -585,7 +588,9 @@ Validates token. Returns object of mutable user data.
       ```json
         {
            "language": "en_us",
-           "levelFlexbox": "1"
+           "records": {
+              "flexbox": [1, 2]
+           }
         }
       ```
 
@@ -644,7 +649,7 @@ Validates a token. Returns an array of users records objects.
     * `page = [number]`
     * `limit = [number]`
     * `sort = 'username' | 'levelFlexbox'`
-    * `order = -1 | 1 | 'asc' | 'ascending' | 'desc' | 'descending'`
+    * `order = 'asc' | 'ascending' | 'desc' | 'descending'`
 
 * **Data Params**
 
@@ -752,10 +757,23 @@ Validates token. Returns level data according to user's language.
       **Content:**
       ```json
       {
-         "winCondition": "justify-content: flex-end",
-         "name": "Distributing Space Inside a Flex Container",
-         "description": "<p>Welcome to Flexbox Froggy, a game where you help Froggy and friends by writing CSS code! Guide this frog to the lilypad on the right by using the <code>justify-content</code> property, which aligns items horizontally and accepts the following values:</p><ul><li><code>flex-start</code>: Items align to the left side of the container.</li><li><code>flex-end</code>: Items align to the right side of the container.</li><li><code>center</code>: Items align at the center of the container.</li><li><code>space-between</code>: Items display with equal spacing between them.</li><li><code>space-around</code>: Items display with equal spacing around them.</li></ul><p>For example, <code>justify-content: flex-end;</code> will move the frog to the right.</p>",
-         "submitText": "Next Level"
+         "winCondition":"justify-content: flex-end;",
+         "name":"Выравнивание содержимого Flex Контейнера",
+         "description":{
+         "paragraph":"Добро пожаловать в Flexbox Froggy. Игра, в которой тебе нужно помочь лягушонку Фроги и его друзьям, написав CSS код! Направь этого лягушонка на лилию справа, используя свойство <code>justify-content</code>, которое выравнивает элементы горизонтально и принимает следующие значения:",
+         "rulesList":[
+            "<code>flex-start</code>: Элементы выравниваются по левой стороне контейнера.",
+            "<code>flex-end</code>: Элементы выравниваются по правой стороне контейнера.",
+            "<code>center</code>: Элементы выравниваются по центру контейнера.",
+            "<code>space-between</code>: Элементы отображаются с одинаковыми отступами между ними.",
+            "<code>space-around</code>: Элементы отображаются с одинаковыми отступами вокруг них."
+         ],
+         "example":"Например, <code>justify-content: flex-end;</code> сдвинет лягушонка вправо."
+         },
+         "submitText":"Следующий Уровень",
+         "type1Quantity":1,
+         "type2Quantity":0,
+         "type3Quantity":0
       }
       ```
 

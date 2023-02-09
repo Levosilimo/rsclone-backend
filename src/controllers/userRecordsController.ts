@@ -5,7 +5,7 @@ import { HydratedDocument, SortOrder } from "mongoose";
 interface TableQuery {
   page?: number;
   limit?: number;
-  sort?: "username" | "levelFlexbox";
+  sort?: string;
   order?: SortOrder;
 }
 
@@ -15,16 +15,28 @@ export async function getUsersRecords(
 ): Promise<express.Response | void> {
   try {
     const URLQuery: TableQuery = req.query;
-    const schemaQuery = UserDataSchema.find();
+    const schemaAggregate = UserDataSchema.aggregate().project({
+      _id: 0,
+      username: 1,
+      records: 1,
+    });
     if (URLQuery.limit >= 0) {
       if (URLQuery.page >= 0)
-        schemaQuery.skip(URLQuery.limit * (URLQuery.page - 1));
-      schemaQuery.limit(URLQuery.limit);
+        schemaAggregate.skip(URLQuery.limit * (URLQuery.page - 1));
+      schemaAggregate.limit(URLQuery.limit);
     }
-    schemaQuery.sort([[URLQuery.sort, URLQuery.order]]);
-    schemaQuery.select({ _id: 0, username: 1, levelFlexbox: 1 });
+    if (URLQuery.sort === "records.flexbox") {
+      schemaAggregate.addFields({
+        length: { $size: `$${URLQuery.sort}` },
+      });
+      schemaAggregate.sort({ length: URLQuery.order });
+    } else {
+      const sortObj: Record<string, SortOrder> = {};
+      sortObj[URLQuery.sort] = URLQuery.order;
+      schemaAggregate.sort(sortObj);
+    }
     const resultArray: Array<HydratedDocument<UserData>> =
-      await schemaQuery.exec();
+      await schemaAggregate.exec();
     res.setHeader(
       "X-Total-Count",
       `${await UserDataSchema.find().estimatedDocumentCount().exec()}`

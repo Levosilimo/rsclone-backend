@@ -11,8 +11,6 @@ export async function updateAvatar(
   res: express.Response
 ): Promise<express.Response | void> {
   try {
-    // Field "id" is not typed in Multer.File
-    // @ts-ignore
     const id = req.body.avatarId;
     const userId = req.body.userData.user_id;
     await UserDataSchema.findOneAndUpdate(
@@ -32,8 +30,6 @@ export async function updateAvatarByUsername(
   res: express.Response
 ): Promise<express.Response | void> {
   try {
-    // Field "id" is not typed in Multer.File
-    // @ts-ignore
     const id = req.body.avatarId;
     const username = req.params.username;
     if (username) {

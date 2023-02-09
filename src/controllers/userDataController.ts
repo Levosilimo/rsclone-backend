@@ -8,29 +8,19 @@ export async function updateUserData(
   next: express.NextFunction
 ): Promise<express.Response | void> {
   try {
-    const { language, levelFlexbox }: Partial<UserData> = req.body;
-    if (!language && !levelFlexbox) return next();
-    let user: HydratedDocument<UserData>;
-    if (req.body.username) {
-      if (!req.body.userData.isAdmin)
-        return res.status(401).send("You don't have rights to do that");
-      const username = String(req.body.username);
-      user = await UserDataSchema.findOneAndUpdate(
-        { username },
-        { language, levelFlexbox },
-        { new: true }
-      );
-    } else {
-      const userId: Types.ObjectId = req.body.userData.user_id;
-      user = await UserDataSchema.findOneAndUpdate(
+    const { language, records }: Partial<UserData> = req.body;
+    if (!language && !records) return next();
+    const userId: Types.ObjectId = req.body.userData.user_id;
+    const user: HydratedDocument<UserData> =
+      await UserDataSchema.findOneAndUpdate(
         { _id: userId },
-        { language, levelFlexbox },
+        { language, records },
         { new: true }
       );
-    }
+    if (!user) return res.status(401).send("Invalid Token");
     const responseBody: Partial<UserData> = {
       language: user.language,
-      levelFlexbox: user.levelFlexbox,
+      records: user.records,
     };
     res.status(200).json(responseBody);
   } catch (err) {
@@ -45,20 +35,20 @@ export async function updateUserDataByUsername(
   next: express.NextFunction
 ): Promise<express.Response | void> {
   try {
-    const { language, levelFlexbox }: Partial<UserData> = req.body;
-    if (!language && !levelFlexbox) return next();
+    const { language, records }: Partial<UserData> = req.body;
+    if (!language && !records) return next();
     const username = req.params.username;
     if (!username)
       return res.status(400).send('Invalid input: "username" is required');
     const user: HydratedDocument<UserData> =
       await UserDataSchema.findOneAndUpdate(
         { username },
-        { language, levelFlexbox },
+        { language, records },
         { new: true }
       );
     const responseBody: Partial<UserData> = {
       language: user.language,
-      levelFlexbox: user.levelFlexbox,
+      records: user.records,
     };
     res.status(200).json(responseBody);
   } catch (err) {
@@ -72,21 +62,14 @@ export async function getUserData(
   res: express.Response
 ): Promise<express.Response | void> {
   try {
-    let user: HydratedDocument<UserData>;
-    if (req.body.username) {
-      if (!req.body.userData.isAdmin)
-        return res.status(401).send("You don't have rights to do that");
-      const username = String(req.body.username);
-      user = await UserDataSchema.findOne({ username });
-      if (!user)
-        return res.status(404).send('User with this "nickname" not found');
-    } else {
-      const userId: Types.ObjectId = req.body.userData.user_id;
-      user = await UserDataSchema.findOne({ _id: userId });
-    }
+    const userId: Types.ObjectId = req.body.userData.user_id;
+    const user: HydratedDocument<UserData> = await UserDataSchema.findOne({
+      _id: userId,
+    });
+    if (!user) return res.status(401).send("Invalid Token");
     const responseBody: Partial<UserData> = {
       language: user.language,
-      levelFlexbox: user.levelFlexbox,
+      records: user.records,
     };
     res.status(200).json(responseBody);
   } catch (err) {
@@ -112,7 +95,7 @@ export async function getUserDataByUsername(
       return res.status(404).send('User with this "nickname" not found');
     const responseBody: Partial<UserData> = {
       language: user.language,
-      levelFlexbox: user.levelFlexbox,
+      records: user.records,
     };
     res.status(200).json(responseBody);
   } catch (err) {
