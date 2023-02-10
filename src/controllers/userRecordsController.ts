@@ -14,14 +14,19 @@ export async function getUsersRecords(
   res: express.Response
 ): Promise<express.Response | void> {
   try {
-    const URLQuery: TableQuery = req.query;
+    const URLQuery: TableQuery = {
+      page: Number(req.query.page),
+      limit: Number(req.query.limit),
+      order: req.query.order as SortOrder,
+      sort: req.query.sort.toString(),
+    };
     const schemaAggregate = UserDataSchema.aggregate().project({
       _id: 0,
       username: 1,
       records: 1,
     });
-    if (URLQuery.limit >= 0) {
-      if (URLQuery.page >= 0)
+    if (!Number.isNaN(URLQuery.limit) && URLQuery.limit > 0) {
+      if (!Number.isNaN(URLQuery.page) && URLQuery.page > 0)
         schemaAggregate.skip(URLQuery.limit * (URLQuery.page - 1));
       schemaAggregate.limit(URLQuery.limit);
     }
