@@ -15,6 +15,7 @@ interface levelResponse {
   type1Quantity: number;
   type2Quantity: number;
   type3Quantity: number;
+  levelsCount: number;
 }
 
 export async function addLevel(
@@ -40,7 +41,10 @@ export async function getLevel(
   try {
     const game = req.params.game;
     const levelNumber = Number(req.params.level);
-    if (!game || !levelNumber) return;
+    if (!game || !levelNumber)
+      return res
+        .status(400)
+        .send('Invalid input: "game" and "levelNumber" are required');
     const level: HydratedDocument<LevelData> = await LevelDataSchema.findOne({
       game,
       levelNumber,
@@ -68,8 +72,25 @@ export async function getLevel(
       type1Quantity: level.type1Quantity,
       type2Quantity: level.type2Quantity,
       type3Quantity: level.type3Quantity,
+      levelsCount: await LevelDataSchema.where({ game: game }).count().exec(),
     };
     res.status(200).json(responseBody);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+  }
+}
+
+export async function getLevelTotalCount(
+  req: express.Request,
+  res: express.Response
+): Promise<express.Response | void> {
+  try {
+    const game = req.params.game;
+    if (!game) return res.status(400).send('Invalid input: "game" is required');
+    res.status(200).json({
+      levelsCount: await LevelDataSchema.where({ game: game }).count().exec(),
+    });
   } catch (err) {
     console.error(err);
     res.status(500).send("Server error");

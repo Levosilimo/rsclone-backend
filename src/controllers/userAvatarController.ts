@@ -13,12 +13,12 @@ export async function updateAvatar(
   try {
     const id = req.body.avatarId;
     const userId = req.body.userData.user_id;
-    await UserDataSchema.findOneAndUpdate(
-      { _id: userId },
-      { avatarId: id },
-      { new: true }
-    );
+    const user = await UserDataSchema.findOne({ _id: userId });
+    const oldAvatarId = user.avatarId;
+    user.avatarId = id;
+    await user.save();
     res.status(200).end();
+    if (oldAvatarId) bucket.delete(oldAvatarId);
   } catch (err) {
     console.error(err);
     res.status(500).send("Server error");
@@ -32,14 +32,14 @@ export async function updateAvatarByUsername(
   try {
     const id = req.body.avatarId;
     const username = req.params.username;
-    if (username) {
-      await UserDataSchema.findOneAndUpdate(
-        { username },
-        { avatarId: id },
-        { new: true }
-      );
-    } else return res.status(400).send('Invalid input: "username" is required');
+    if (!username)
+      return res.status(400).send('Invalid input: "username" is required');
+    const user = await UserDataSchema.findOne({ username });
+    const oldAvatarId = user.avatarId;
+    user.avatarId = id;
+    await user.save();
     res.status(200).end();
+    if (oldAvatarId) bucket.delete(oldAvatarId);
   } catch (err) {
     console.error(err);
     res.status(500).send("Server error");
@@ -60,8 +60,8 @@ export async function getAvatar(
     });
     if (!user)
       return res.status(404).send('User with this "username" not found');
+    res.setHeader("content-type", "image/png");
     if (!user.avatarId) {
-      res.setHeader("content-type", "image/png");
       bucket.openDownloadStream(DEFAULT_AVATARID).pipe(res);
       return;
     }
@@ -72,6 +72,7 @@ export async function getAvatar(
     if (!files || files.length === 0) {
       avatarId = DEFAULT_AVATARID;
     } else avatarId = user.avatarId;
+    res.setHeader("content-type", "image/png");
     bucket.openDownloadStream(avatarId).pipe(res);
   } catch (err) {
     console.error(err);

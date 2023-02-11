@@ -5,7 +5,7 @@ import { games } from "../types";
 export interface UserData {
   username: string;
   language: string;
-  avatarId: ObjectId;
+  avatarId?: ObjectId;
   records: Record<games, Array<number>>;
 }
 
