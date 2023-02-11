@@ -9,7 +9,7 @@ import { connect } from "./model/db";
 export const PORT = process.env.PORT;
 export const MONGODB_URI = process.env.MONGODB_URI;
 const app = express();
-app.use(cors());
+app.use(cors({ credentials: true, origin: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 logger.token("body", (req) => JSON.stringify(req.body));
