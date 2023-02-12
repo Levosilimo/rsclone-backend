@@ -7,6 +7,7 @@ interface TableQuery {
   limit?: number;
   sort?: string;
   order?: SortOrder;
+  fullInfo?: boolean;
 }
 
 export async function getUsersRecords(
@@ -19,12 +20,35 @@ export async function getUsersRecords(
       limit: Number(req.query.limit),
       order: req.query.order as SortOrder,
       sort: req.query.sort.toString(),
+      fullInfo: Boolean(req.query.fullInfo),
     };
-    const schemaAggregate = UserDataSchema.aggregate().project({
-      _id: 0,
-      username: 1,
-      records: 1,
-    });
+    if (URLQuery.fullInfo && !req.body.userData.isAdmin)
+      return res.status(401).send("You don't have rights to do that");
+    const schemaAggregate = UserDataSchema.aggregate();
+    if (URLQuery.fullInfo) {
+      schemaAggregate
+        .lookup({
+          from: "users",
+          localField: "_id",
+          foreignField: "_id",
+          as: "authData",
+        })
+        .unwind({ path: "$authData" });
+    }
+    schemaAggregate
+      .project({
+        _id: 0,
+        username: 1,
+        records: 1,
+        language: 1,
+        "authData.email": 1,
+        "authData.isAdmin": 1,
+      })
+      .project({
+        "records._id": 0,
+        "authData._id": 0,
+      });
+    if (!URLQuery.fullInfo) schemaAggregate.project({ language: 0 });
     if (!Number.isNaN(URLQuery.limit) && URLQuery.limit > 0) {
       if (!Number.isNaN(URLQuery.page) && URLQuery.page > 0)
         schemaAggregate.skip(URLQuery.limit * (URLQuery.page - 1));

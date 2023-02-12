@@ -178,7 +178,7 @@ interface TokenPayload {
   isAdmin: boolean;
 }
 
-export function verifyToken(verifyAdmin: boolean, autonomous: boolean) {
+export function verifyToken(requireAdmin: boolean, autonomous: boolean) {
   return async (
     req: express.Request,
     res: express.Response,
@@ -194,7 +194,7 @@ export function verifyToken(verifyAdmin: boolean, autonomous: boolean) {
       if (userData.user_id === undefined || userData.isAdmin === undefined) {
         return res.status(401).send("Invalid Token");
       }
-      if (verifyAdmin && !userData.isAdmin)
+      if (requireAdmin && !userData.isAdmin)
         return res.status(401).send("You don't have rights to do that");
       req.body.userData = userData;
     } catch {
