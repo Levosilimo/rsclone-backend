@@ -46,6 +46,7 @@ export async function getUsersRecords(
       "X-Total-Count",
       `${await UserDataSchema.find().estimatedDocumentCount().exec()}`
     );
+    res.setHeader("Access-Control-Expose-Headers", `X-Total-Count`);
     res.status(200).json(resultArray);
   } catch (err) {
     console.error(err);
