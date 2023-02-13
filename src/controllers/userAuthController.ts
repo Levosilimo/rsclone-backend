@@ -141,7 +141,7 @@ export function checkUsernameEligibility(autonomous: boolean) {
         return res.status(422).send("Username is already taken");
       }
       if (!autonomous) return next();
-      res.end();
+      res.status(200).send("Username is available");
     } catch (error) {
       console.error(error);
       res.status(500).send("Server error");
@@ -165,7 +165,7 @@ export function checkEmailEligibility(autonomous: boolean) {
           .send("A user with this email address already exists");
       }
       if (!autonomous) return next();
-      res.end();
+      res.status(200).send("E-mail is available");
     } catch (error) {
       console.error(error);
       res.status(500).send("Server error");
