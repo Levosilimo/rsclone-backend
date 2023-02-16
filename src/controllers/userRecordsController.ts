@@ -49,11 +49,6 @@ export async function getUsersRecords(
         "authData._id": 0,
       });
     if (!URLQuery.fullInfo) schemaAggregate.project({ language: 0 });
-    if (!Number.isNaN(URLQuery.limit) && URLQuery.limit > 0) {
-      if (!Number.isNaN(URLQuery.page) && URLQuery.page > 0)
-        schemaAggregate.skip(URLQuery.limit * (URLQuery.page - 1));
-      schemaAggregate.limit(URLQuery.limit);
-    }
     if (URLQuery.sort === "records.flexbox") {
       schemaAggregate.addFields({
         length: { $size: `$${URLQuery.sort}` },
@@ -63,6 +58,11 @@ export async function getUsersRecords(
       const sortObj: Record<string, SortOrder> = {};
       sortObj[URLQuery.sort] = URLQuery.order;
       schemaAggregate.sort(sortObj);
+    }
+    if (!Number.isNaN(URLQuery.limit) && URLQuery.limit > 0) {
+      if (!Number.isNaN(URLQuery.page) && URLQuery.page > 0)
+        schemaAggregate.skip(URLQuery.limit * (URLQuery.page - 1));
+      schemaAggregate.limit(URLQuery.limit);
     }
     const resultArray: Array<HydratedDocument<UserData>> =
       await schemaAggregate.exec();

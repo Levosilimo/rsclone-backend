@@ -2,7 +2,7 @@ import * as express from "express";
 import * as bcrypt from "bcryptjs";
 import * as jwt from "jsonwebtoken";
 import UserAuthSchema, { UserAuth } from "../model/userAuthSchema";
-import UserDataSchema from "../model/userDataSchema";
+import UserDataSchema, { UserData } from "../model/userDataSchema";
 import { HydratedDocument } from "mongoose";
 
 interface RegistrationCredentialsRequestBody {
@@ -35,16 +35,19 @@ export async function loginUser(
       const encryptedPassword: string = user.password;
       if (await bcrypt.compare(password, encryptedPassword)) {
         const token = jwt.sign(
-          { user_id: user._id, isAdmin: user.isAdmin },
+          { username: user.username, user_id: user._id, isAdmin: user.isAdmin },
           process.env.TOKEN_KEY,
           {
             expiresIn: process.env.TOKEN_LIFETIME,
           }
         );
+        const userData: HydratedDocument<UserData> =
+          await UserDataSchema.findById(user._id);
         const responseBody: LoginResponseBody = {
           username: user.username,
           email: user.email,
           token,
+          records: userData.records,
         };
         res.status(200).json(responseBody);
       } else {
@@ -72,6 +75,7 @@ interface LoginResponseBody {
   token: string;
   username: string;
   email: string;
+  records: Record<string, Array<number>>;
 }
 
 export async function registerUser(
@@ -108,18 +112,23 @@ export async function registerUser(
       password: encryptedPassword,
       isAdmin,
     });
-    await UserDataSchema.create({
+    const userData: HydratedDocument<UserData> = await UserDataSchema.create({
       username: username,
       _id: user._id,
     });
     const token: string = jwt.sign(
-      { user_id: user._id, isAdmin },
+      { username, user_id: user._id, isAdmin },
       process.env.TOKEN_KEY,
       {
         expiresIn: process.env.TOKEN_LIFETIME,
       }
     );
-    const responseBody: LoginResponseBody = { username, email, token };
+    const responseBody: LoginResponseBody = {
+      username,
+      email,
+      token,
+      records: userData.records,
+    };
     res.status(201).json(responseBody);
   } catch (error) {
     console.error(error);
@@ -174,6 +183,7 @@ export function checkEmailEligibility(autonomous: boolean) {
 }
 
 interface TokenPayload {
+  username: string;
   user_id: string;
   isAdmin: boolean;
 }
@@ -191,7 +201,11 @@ export function verifyToken(requireAdmin: boolean, autonomous: boolean) {
     }
     try {
       const userData: TokenPayload = jwt.verify(token, process.env.TOKEN_KEY);
-      if (userData.user_id === undefined || userData.isAdmin === undefined) {
+      if (
+        userData.user_id === undefined ||
+        userData.isAdmin === undefined ||
+        userData.username === undefined
+      ) {
         return res.status(401).send("Invalid Token");
       }
       if (requireAdmin && !userData.isAdmin)
