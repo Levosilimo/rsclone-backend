@@ -81,6 +81,6 @@ router.get("/records", verifyToken(false, false), getUsersRecords);
 
 router.get("/levels/:game", verifyToken(false, false), getLevelTotalCount);
 router.get("/levels/:game/:level", verifyToken(false, false), getLevel);
-router.post("/levels", addLevel);
+//router.post("/levels", addLevel);
 
 router.get("/check-auth", verifyToken(false, true));

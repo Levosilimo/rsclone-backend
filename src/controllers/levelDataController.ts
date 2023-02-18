@@ -3,18 +3,24 @@ import * as express from "express";
 import { HydratedDocument } from "mongoose";
 import UserDataSchema, { UserData } from "../model/userDataSchema";
 
+type Tooltip = {
+  key: string;
+  text: string;
+};
+
 interface levelResponse {
   winCondition: string;
+  pre: string;
+  post: string;
   name: string;
   description: {
     paragraph: string;
     rulesList: Array<string>;
+    tooltips: Array<Tooltip>;
     example: string;
   };
   submitText: string;
-  type1Quantity: number;
-  type2Quantity: number;
-  type3Quantity: number;
+  items: Array<number>;
   levelsCount: number;
 }
 
@@ -60,18 +66,24 @@ export async function getLevel(
     const rulesList = level.description.rulesList.map(
       (rule) => rule[user.language]
     );
+    const tooltips: Array<Tooltip> = level.description.tooltips.map(
+      (tooltip) => {
+        return { key: tooltip.key, text: tooltip[user.language] };
+      }
+    );
     const responseBody: levelResponse = {
       winCondition: level.winCondition,
+      pre: level.pre,
+      post: level.post,
       name: level.name[user.language],
       description: {
         paragraph: level.description.paragraph[user.language],
         rulesList,
+        tooltips,
         example: level.description.example[user.language],
       },
       submitText: level.submitText[user.language],
-      type1Quantity: level.type1Quantity,
-      type2Quantity: level.type2Quantity,
-      type3Quantity: level.type3Quantity,
+      items: level.items,
       levelsCount: await LevelDataSchema.where({ game: game }).count().exec(),
     };
     res.status(200).json(responseBody);
