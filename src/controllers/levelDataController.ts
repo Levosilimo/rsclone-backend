@@ -86,7 +86,10 @@ export async function getLevel(
       items: level.items,
       levelsCount: await LevelDataSchema.where({ game: game }).count().exec(),
     };
-    res.status(200).json(responseBody);
+    res
+      .setHeader("Cache-Control", "no-cache, no-store, must-revalidate")
+      .status(200)
+      .json(responseBody);
   } catch (err) {
     console.error(err);
     res.status(500).send("Server error");
