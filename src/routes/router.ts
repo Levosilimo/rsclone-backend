@@ -1,4 +1,5 @@
 import {
+  changeUsername,
   checkEmailEligibility,
   checkUsernameEligibility,
   loginUser,
@@ -36,6 +37,7 @@ router.post(
   checkUsernameEligibility(false),
   registerUser
 );
+router.patch("/change-username", verifyToken(false, false), changeUsername);
 router.post("/register/check-username", checkUsernameEligibility(true));
 router.post("/register/check-email", checkEmailEligibility(true));
 

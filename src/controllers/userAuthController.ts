@@ -17,6 +17,12 @@ interface LoginCredentialsRequestBody {
   password: string;
 }
 
+interface ChangeUsernameRequestBody {
+  newUsername: string;
+  password: string;
+  userData: TokenPayload;
+}
+
 export async function loginUser(
   req: express.Request,
   res: express.Response
@@ -180,6 +186,55 @@ export function checkEmailEligibility(autonomous: boolean) {
       res.status(500).send("Server error");
     }
   };
+}
+
+export async function changeUsername(
+  req: express.Request,
+  res: express.Response
+): Promise<express.Response | void> {
+  try {
+    if (!("newUsername" in req.body && "password" in req.body)) {
+      return res
+        .status(400)
+        .send('Invalid input: "newUsername" and "password" are required');
+    }
+    const { newUsername, password, userData }: ChangeUsernameRequestBody =
+      req.body;
+    const user: HydratedDocument<UserAuth> = await UserAuthSchema.findOne({
+      _id: userData.user_id,
+    });
+    if (!user) {
+      res.status(404).send('User with this "username" was not found');
+      return;
+    }
+    if (await UserAuthSchema.findOne({ username: newUsername })) {
+      res.status(422).send("Username is already taken");
+      return;
+    }
+    const encryptedPassword: string = user.password;
+    if (await bcrypt.compare(password, encryptedPassword)) {
+      user.username = newUsername;
+      await UserDataSchema.findByIdAndUpdate(user._id, {
+        username: user.username,
+      });
+      await user.save().then((result) => {
+        const token = jwt.sign(
+          { username: user.username, user_id: user._id, isAdmin: user.isAdmin },
+          process.env.TOKEN_KEY,
+          {
+            expiresIn: process.env.TOKEN_LIFETIME,
+          }
+        );
+        res.status(200).json({ token, username: result.username });
+      });
+    } else {
+      res.status(401).send('"password" is not correct');
+      return;
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
 }
 
 interface TokenPayload {
