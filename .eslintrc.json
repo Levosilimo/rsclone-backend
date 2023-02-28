@@ -1,0 +1,24 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["prettier", "import", "@typescript-eslint"],
+    "extends": [
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 2020,
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+    },
+    "env": {
+        "es6": true,
+        "node": true
+    },
+    "rules": {
+        "no-debugger": "off",
+        "no-console": 0,
+        "@typescript-eslint/no-explicit-any": 2,
+        "prettier/prettier": "error",
+        "@typescript-eslint/no-var-requires": "warn",
+        "@typescript-eslint/ban-ts-comment": "warn"
+    }
+}

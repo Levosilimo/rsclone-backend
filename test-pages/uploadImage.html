@@ -1,0 +1,52 @@
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+    <script type="application/javascript">
+        function sendFile(file) {
+            const uri = "http://localhost:9001/avatar/Lev100%20Sylin";
+            const xhr = new XMLHttpRequest();
+            const fd = new FormData();
+
+            xhr.open("PATCH", uri, true);
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const image = document.getElementById("userAvatar");
+                    image.src = "http://localhost:9001/avatar/Lev100%20Sylin";
+                    alert(xhr.responseText);
+                }
+            };
+            fd.append('file', file);
+            fd.append('username', "Lev100 Sylin")
+            xhr.setRequestHeader("x-access-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjNlNTJhYzRiMmRkZjhlNTE5MjY1YTJiIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjc2MTQwOTIwLCJleHAiOjE2NzYxNjI1MjB9.BuBJAEvSE01MY64H-OuDq2ZVhJz-LEmHhkHV2_7l5ws")
+            xhr.send(fd);
+        }
+
+        window.onload = () => {
+            const dropzone = document.getElementById("dropzone");
+            dropzone.ondragover = dropzone.ondragenter = (event) => {
+                event.stopPropagation();
+                event.preventDefault();
+            }
+
+            dropzone.ondrop = (event) => {
+                event.stopPropagation();
+                event.preventDefault();
+
+                const filesArray = event.dataTransfer.files;
+                for (let i=0; i<filesArray.length; i++) {
+                    sendFile(filesArray[i]);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <div id="dropzone" style="margin:30px; width:500px; height:300px; border:1px dotted grey;">Drag & drop your file here</div>
+    </div>
+    <h3>user's avatar</h3>
+    <div style="display: inline-block;margin-left:30px;padding: 1px;border:1px solid grey;">
+        <img id="userAvatar" src="http://localhost:9001/avatar/Lev100%20Sylin">
+    </div>
+</body>
+</html>
